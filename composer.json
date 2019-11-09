@@ -1,0 +1,33 @@
+{
+    "name": "sdkconsultoria/blog",
+    "type": "library",
+    "description": "Crea un sistema de blogs completo y simple",
+    "keywords": ["laravel","blog"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Camilo Rodriguez Cruz",
+            "email": "camilo@sdkconsultoria.com",
+            "homepage": "https://sdkconsultoria.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sdkconsultoria\\Blog\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sdkconsultoria\\Blog\\BlogServiceProvider"
+            ],
+            "aliases": {
+                "Debugbar": "Sdkconsultoria\\Blog\\Facade"
+            }
+        }
+    }
+}
