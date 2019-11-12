@@ -67,7 +67,7 @@ class BlogPostController extends ResourceController
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request);
+        $this->validate($request, 'rulesUpdate');
 
         $model = $this->findModel($id);
         $this->loadData($model, $request);
@@ -78,9 +78,9 @@ class BlogPostController extends ResourceController
             $model->addKey($value, $request->input($value['name']));
         }
 
-        if($request->hasfile('images'))
+        if($request->hasfile('blog_posts_images'))
         {
-            foreach($request->file('images') as $file)
+            foreach($request->file('blog_posts_images') as $file)
             {
                 $extension = $file->getClientOriginalExtension();
                 $filename  = $file->getClientOriginalName();
@@ -92,6 +92,7 @@ class BlogPostController extends ResourceController
                 $image->save();
 
                 $file->storeAs('blogs/' . $model->id, $image->id . '.' . $file->extension(), 'public');
+
                 Images::convertImage('blogs/'.$model->id.'/', $image->id, $file->extension(), $model->blog->getSizes());
             }
         }

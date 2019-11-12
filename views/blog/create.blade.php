@@ -17,7 +17,7 @@ use Sdkconsultoria\Base\Widgets\Messages\Error;
 @section('content')
     @card({{__('blog::blog.create_blog')}})
     <?= Error::generate($errors) ?>
-    <form action="{{route('blog.store')}}" method="post">
+    <form action="{{route('blog.store')}}" method="post" novalidate>
         @csrf
         @include('blog::blog._form')
     </form>

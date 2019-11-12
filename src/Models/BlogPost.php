@@ -33,9 +33,9 @@ class BlogPost extends ResourceModel
     *
     * @return array
     */
-   public static function rulesUpdate()
+   public static function rulesUpdate($params)
    {
-       $validate = Self::rules();
+       $validate = Self::rules($params);
        unset($validate['blogs_id']);
        return $validate;
    }
@@ -91,12 +91,12 @@ class BlogPost extends ResourceModel
 
    public function blog()
    {
-       return $this->hasOne('Sdkconsultoria\Blog\models\Blog', 'id', 'blogs_id');
+       return $this->hasOne('Sdkconsultoria\Blog\Models\Blog', 'id', 'blogs_id');
    }
 
    public function images()
    {
-       return $this->hasMany('Sdkconsultoria\Blog\models\BlogImage', 'blog_posts_id', 'id');
+       return $this->hasMany('Sdkconsultoria\Blog\Models\BlogImage', 'blog_posts_id', 'id');
    }
 
    public function save(array $options = [])
@@ -109,7 +109,7 @@ class BlogPost extends ResourceModel
 
    public function getKeys()
    {
-       return $this->hasMany('Sdkconsultoria\Blog\models\BlogKey', 'blog_posts_id', 'id');
+       return $this->hasMany('Sdkconsultoria\Blog\Models\BlogKey', 'blog_posts_id', 'id');
    }
 
    public function getKeyValue($key)
