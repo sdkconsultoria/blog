@@ -6,32 +6,32 @@ return [
      */
     'blogs'           => 'Blogs',
     'blog'            => 'Blog',
-    'create_blog'     => 'Create blog',
-    'available_blogs' => 'Available blogs',
-    'detail_blogs'    => 'Details',
-    'edit_blog'       => 'Update blog',
+    'create_blog'     => 'Crear blog',
+    'available_blogs' => 'Blogs disponibles',
+    'detail_blogs'    => 'Detalles',
+    'edit_blog'       => 'Actualizar blog',
     'keys'            => 'Extra keys',
-    'sizes'           => 'Images sizes',
-    'images_types'    => 'Images types',
+    'sizes'           => 'Tamaños',
+    'images_types'    => 'Tipos',
 
     /**
      * Blogs posts translates
      */
     'blog_posts'          => 'Blog posts',
     'blog_post'           => 'Blog post',
-    'create_blog_post'    => 'Create blog post',
-    'available_blog_post' => 'Available blog posts',
-    'detail_blog_post'    => 'Details',
-    'edit_blog_post'      => 'Update blog post',
+    'create_blog_post'    => 'Crear blog post',
+    'available_blog_post' => 'Disponibles blog posts',
+    'detail_blog_post'    => 'Detalles',
+    'edit_blog_post'      => 'Actualizar blog post',
     'blog_posts_id'       => 'Blog post',
     'blogs_id'            => 'Blog',
-    'meta_author'         => 'Meta author',
-    'meta_description'    => 'Meta description',
+    'meta_author'         => 'Meta autor',
+    'meta_description'    => 'Meta descripcion',
     'meta_keywords'       => 'Meta keywords',
 
     'images' => [
-        'height'  => 'height',
-        'width'   => 'width',
-        'quality' => 'quality',
+        'height'  => 'Alto',
+        'width'   => 'Ancho',
+        'quality' => 'Calidad',
     ]
 ];
