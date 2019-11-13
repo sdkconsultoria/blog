@@ -20,7 +20,7 @@ class CreateBlogsTable extends Migration
             $table->unsignedBigInteger('created_by')->unsigned()->index();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('restrict');
 
-            $table->smallInteger('status')->default('10');
+            $table->smallInteger('status')->default('15');
             $table->string('name', 64)->nullable();
             $table->string('seoname', 64)->nullable();
             $table->text('description')->nullable();
