@@ -49,12 +49,8 @@ class BlogPost extends ResourceModel
    {
        $attributes = parent::attributes();
        return array_merge($attributes, [
-           'created_at'       => __('base::attributes.created_at'),
-           'updated_at'       => __('base::attributes.updated_at'),
-           'created_by'       => __('base::attributes.created_by'),
-           'status'           => __('base::attributes.status'),
            'name'             => __('base::attributes.name'),
-           'seoname'          => __('base::attributes.sename'),
+           'seoname'          => __('base::attributes.seoname'),
            'description'      => __('base::attributes.description'),
            'blog_posts_id'    => __('blog::blog.blog_posts_id'),
            'blogs_id'         => __('blog::blog.blogs_id'),

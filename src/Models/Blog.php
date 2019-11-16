@@ -50,11 +50,6 @@ class Blog extends ResourceModel
         ], $attributes);
     }
 
-    public function createdBy()
-    {
-        return $this->hasOne('App\User', 'id', 'created_by');
-    }
-
     public function getSizes(){
         $items = unserialize($this->sizes);
         if ($items) {
