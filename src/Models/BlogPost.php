@@ -80,11 +80,6 @@ class BlogPost extends ResourceModel
        ], $attributes);
    }
 
-   public function createdBy()
-   {
-       return $this->hasOne('App\User', 'id', 'created_by');
-   }
-
    public function blog()
    {
        return $this->hasOne('Sdkconsultoria\Blog\Models\Blog', 'id', 'blogs_id');
