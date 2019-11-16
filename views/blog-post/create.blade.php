@@ -69,3 +69,5 @@ use Sdkconsultoria\Blog\Models\Blog;
     </form>
     @endcard()
 @endsection
+<button style="display:none" id="edit" type="button"></button>
+<button style="display:none" id="save" type="button"></button>
