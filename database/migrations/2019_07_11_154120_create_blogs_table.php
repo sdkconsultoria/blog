@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Sdkconsultoria\Blog\Models\Blog;
 
 class CreateBlogsTable extends Migration
 {
@@ -28,6 +29,13 @@ class CreateBlogsTable extends Migration
             $table->text('sizes')->nullable();
             $table->text('keys')->nullable();
         });
+
+        $blog = new Blog();
+        $blog->name = 'configs';
+        $blog->created_by = 1;
+        $blog->description = 'Usado para generar posts de configuración';
+        $blog->status = 0;
+        $blog->save();
     }
 
     /**
