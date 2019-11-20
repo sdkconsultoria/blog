@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Sdkconsultoria\Blog\Models\BlogPost;
 
 class CreateBlogPostsTable extends Migration
 {
@@ -39,6 +40,14 @@ class CreateBlogPostsTable extends Migration
             $table->text('sizes')->nullable();
             $table->text('keys')->nullable();
         });
+
+        $blog = new BlogPost();
+        $blog->name = 'generic';
+        $blog->created_by = 1;
+        $blog->blogs_id = 1;
+        $blog->description = 'Usado para configuraciones genericas';
+        $blog->status = 0;
+        $blog->save();
     }
 
     /**
