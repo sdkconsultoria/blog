@@ -115,7 +115,7 @@ class BlogPost extends ResourceModel
 
    public function getKeyValue($key)
    {
-       return $this->getKeys()->where('name', $key)->first();
+       return $this->getKeys()->where('seoname', $key)->first();
    }
 
    public function addKey($key, $value)
@@ -135,9 +135,26 @@ class BlogPost extends ResourceModel
        $model->blog_posts_id = $this->id;
        $model->created_by = auth()->user()->id;
        $model->name = $key['name'];
-       $model->seoname = $key['name'];
        $model->value = $value;
-       $model->seovalue = $value;
        $model->save();
+   }
+
+   public function saveKey($label, $value)
+   {
+       $key =  BlogKey::where('blog_posts_id', $this->id)->where('name', $label)->first();
+
+       if ($value) {
+           if ($key) {
+               $key->value = $value;
+           }else{
+               $key                = new BlogKey();
+               $key->blog_posts_id = $this->id;
+               $key->created_by    = auth()->user()->id;
+               $key->name          = $label;
+               $key->value         = $value;
+           }
+
+           $key->save();
+       }
    }
 }

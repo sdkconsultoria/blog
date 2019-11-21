@@ -2,9 +2,15 @@
 
 namespace Sdkconsultoria\Blog\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Sdkconsultoria\Base\Models\ResourceModel;
 
-class BlogKey extends Model
+class BlogKey extends ResourceModel
 {
-    //
+
+    public function save(array $options = [])
+    {
+        $this->generateSeoname();
+        $this->generateSeoname('value', 'seovalue');
+        parent::save($options);
+    }
 }
