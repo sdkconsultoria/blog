@@ -76,9 +76,7 @@ class Blog extends ResourceModel
 
     public function save(array $options = [])
     {
-        if (empty($this->id) or $this->isDirty('name')) {
-            $this->seoname = \Sdkconsultoria\Base\Helpers\Helpers::toSeo($this->name);
-        }
+        $this->generateSeoname();
         parent::save($options);
     }
 }

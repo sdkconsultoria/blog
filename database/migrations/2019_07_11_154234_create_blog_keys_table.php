@@ -23,10 +23,13 @@ class CreateBlogKeysTable extends Migration
             $table->unsignedBigInteger('blog_posts_id')->unsigned()->index()->nullable();
             $table->foreign('blog_posts_id')->references('id')->on('blog_posts')->onDelete('restrict');
 
+            $table->string('category', 64)->nullable();
+            $table->string('seocategory', 64)->nullable();
+
             $table->string('name', 64);
             $table->string('seoname', 64);
-            $table->string('value', 64);
-            $table->string('seovalue', 64);
+            $table->string('value', 64)->nullable();
+            $table->string('seovalue', 64)->nullable();
         });
     }
 

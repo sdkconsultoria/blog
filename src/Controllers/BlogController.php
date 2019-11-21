@@ -74,7 +74,10 @@ class BlogController extends ResourceController
         $items = $model->getKeys();
         array_push($items, [
             'name' => $request->post('name'),
+            'seoname' => $request->post('name'),
             'values' => $request->post('name'),
+            'category' => $request->post('name'),
+            'seocategory' => $request->post('name'),
         ]);
 
         $model->keys = serialize($items);

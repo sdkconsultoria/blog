@@ -92,11 +92,21 @@ class BlogPost extends ResourceModel
 
    public function save(array $options = [])
    {
-       if (empty($this->id) or $this->isDirty('name')) {
-           $this->seoname = \Sdkconsultoria\Base\Helpers\Helpers::toSeo($this->name);
-       }
+       $this->generateSeoname();
+
        parent::save($options);
    }
+
+    public function getDefaultKeys(){
+        if ($this->keys) {
+            $items = unserialize($this->keys);
+            if ($items) {
+                return $items;
+            }
+        }
+
+        return $this->blog->getKeys();
+    }
 
    public function getKeys()
    {
