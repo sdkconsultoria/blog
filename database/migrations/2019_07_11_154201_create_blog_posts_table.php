@@ -28,6 +28,7 @@ class CreateBlogPostsTable extends Migration
             $table->foreign('blog_posts_id')->references('id')->on('blog_posts')->onDelete('restrict');
 
             $table->smallInteger('status')->default('15');
+            $table->string('identifier', 64)->nullable();
             $table->string('name', 64)->nullable();
             $table->string('seoname', 64)->nullable();
             $table->string('language', 10)->nullable();

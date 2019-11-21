@@ -4,9 +4,11 @@ $prefix = 'Sdkconsultoria\Blog\Controllers';
 
 Route::group(['middleware' => ['web']], function () use ($prefix){
     Route::resource('admin/blog', $prefix.'\BlogController')->middleware('auth');
-    Route::resource('admin/blog-post', $prefix.'\BlogPostController')->middleware('auth');
 
+    Route::resource('admin/blog-post', $prefix.'\BlogPostController')->middleware('auth');
     Route::get('/admin/blog-post/create/{blog}', $prefix.'\BlogPostController@create')->name('blog-post.create-blog');
+    Route::get('/admin/page/{page}', $prefix.'\BlogPostController@page')->name('blog-post.page');
+    Route::put('/admin/page/{page}', $prefix.'\BlogPostController@page')->name('blog-post.page');
 
     Route::post('/admin/blog/addKey/{id}', $prefix.'\BlogController@addKey')->name('blog.addkey');
     Route::post('/admin/blog/removeKey/{id}', $prefix.'\BlogController@removeKey')->name('blog.removekey');

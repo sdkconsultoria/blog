@@ -123,4 +123,46 @@ class BlogPostController extends ResourceController
         return response()->json([
         ]);
     }
+
+    public function page($identifier, Request $request)
+    {
+        $method = $request->method();
+        $model = $this->model::where('identifier', $identifier)->first();
+
+        if (!$model) {
+            $model             = new $this->model();
+            $model->identifier = $identifier;
+            $model->created_by = auth()->user()->id;
+            $model->blogs_id   = 2;
+            $model->save();
+        }
+
+        if ($request->isMethod('put')) {
+            $this->loadData($model, $request);
+            $model->save();
+
+            if($request->hasfile('blog_posts_images'))
+            {
+                foreach($request->file('blog_posts_images') as $file)
+                {
+                    $extension = $file->getClientOriginalExtension();
+                    $filename  = $file->getClientOriginalName();
+
+                    $image = new BlogImage();
+                    $image->created_by    = \Auth::user()->id;
+                    $image->extension     =  $file->extension();
+                    $image->blog_posts_id =  $model->id;
+                    $image->save();
+
+                    $file->storeAs('blogs/' . $model->id, $image->id . '.' . $file->extension(), 'public');
+
+                    Images::convertImage('blogs/'.$model->id.'/', $image->id, $file->extension(), $model->blog->getSizes());
+                }
+            }
+        }
+
+        return view($this->view . '.page', [
+            'model' => $model
+        ]);
+    }
 }

@@ -32,9 +32,6 @@ use Sdkconsultoria\Blog\Models\Blog;
     </div>
 </div>
 
- <button style="display:none" id="edit" type="button"></button>
- <button style="display:none" id="save" type="button"></button>
-
 <div class="form-group">
     <div class="row">
         <div class="col-md-4">
@@ -81,3 +78,14 @@ use Sdkconsultoria\Blog\Models\Blog;
 <div class="form-group">
     <button type="submit" class="btn btn-primary">@lang('base::messages.save')</button>
 </div>
+
+@section('custom_scripts')
+    <script type="text/javascript">
+    (function(window, document, $) {
+        'use strict';
+        $('.summernote').summernote({
+            height: 250,   //set editable area's height
+        });
+    })(window, document, jQuery);
+    </script>
+@endsection
