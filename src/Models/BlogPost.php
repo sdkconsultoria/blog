@@ -143,18 +143,16 @@ class BlogPost extends ResourceModel
    {
        $key =  BlogKey::where('blog_posts_id', $this->id)->where('name', $label)->first();
 
-       if ($value) {
-           if ($key) {
-               $key->value = $value;
-           }else{
-               $key                = new BlogKey();
-               $key->blog_posts_id = $this->id;
-               $key->created_by    = auth()->user()->id;
-               $key->name          = $label;
-               $key->value         = $value;
-           }
-
-           $key->save();
+       if ($key) {
+           $key->value = $value;
+       }else{
+           $key                = new BlogKey();
+           $key->blog_posts_id = $this->id;
+           $key->created_by    = auth()->user()->id;
+           $key->name          = $label;
+           $key->value         = $value;
        }
+
+       $key->save();
    }
 }
