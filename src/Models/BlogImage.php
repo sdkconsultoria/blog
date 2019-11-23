@@ -16,4 +16,9 @@ class BlogImage extends Model
         $this->sizes = $this->blogPost->sizes;
         parent::save($options);
     }
+
+    public function getSizesAttribute($value)
+    {
+        return unserialize($value);
+    }
 }
