@@ -24,6 +24,10 @@ class BlogController extends ResourceController
         if (!$model->sizes) {
             $model->sizes = serialize(config('base.images'));
         }
+        if (!$model->images_types) {
+            $model->images_types = serialize(config('base.images_types'));
+        }
+
         $model->save();
         return view($this->view . '.create', compact('model'));
     }

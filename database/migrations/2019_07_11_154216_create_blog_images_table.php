@@ -27,6 +27,7 @@ class CreateBlogImagesTable extends Migration
             $table->string('extension', 6);
             $table->string('name')->nullable();
             $table->string('alt', 124)->nullable();
+            $table->text('sizes')->nullable();
         });
     }
 

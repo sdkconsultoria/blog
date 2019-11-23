@@ -30,18 +30,20 @@ class CreateBlogsTable extends Migration
             $table->text('keys')->nullable();
         });
 
-        $blog = new Blog();
-        $blog->name = 'configs';
-        $blog->created_by = 1;
+        $blog              = new Blog();
+        $blog->name        = 'configs';
+        $blog->created_by  = 1;
         $blog->description = 'Usado para generar posts de configuración';
-        $blog->status = 0;
+        $blog->status      = 0;
         $blog->save();
 
-        $blog = new Blog();
-        $blog->name = 'pages';
-        $blog->created_by = 1;
-        $blog->description = 'Usado para generar páginas comunes';
-        $blog->status = 0;
+        $blog               = new Blog();
+        $blog->name         = 'pages';
+        $blog->created_by   = 1;
+        $blog->description  = 'Usado para generar páginas comunes';
+        $blog->status       = 0;
+        $blog->images_types = serialize(config('base.images_types'));
+        $blog->sizes        = serialize(config('base.images'));
         $blog->save();
     }
 
