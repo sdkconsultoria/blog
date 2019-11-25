@@ -72,6 +72,17 @@ use Sdkconsultoria\Blog\Models\Blog;
        delete_deleted_text="<?= __('base::messages.element_deleted') ?>"
        save_saved="<?= __('base::messages.saved') ?>"
        save_saved_text="<?= __('base::messages.saved_element') ?>"
+       name="<?= __('base::messages.name') ?>"
+       height="<?= __('base::messages.height') ?>"
+       width="<?= __('base::messages.width') ?>"
+       quality="<?= __('base::messages.quality') ?>"
+       save_text="<?= __('base::messages.save') ?>"
+       cancel="<?= __('base::messages.cancel') ?>"
+       add_text="<?= __('base::messages.add')?>"
+       only_this="<?=__('base::messages.blogs.only_this')?>"
+       only_category="<?=__('base::messages.blogs.only_category')?>"
+       only_blog="<?=__('base::messages.blogs.only_blog')?>"
+       sure_continue="<?=__('base::messages.sure_continue')?>"
    ></images-component>
 </div>
 

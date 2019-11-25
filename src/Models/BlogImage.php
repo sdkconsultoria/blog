@@ -13,7 +13,9 @@ class BlogImage extends Model
 
     public function save(array $options = [])
     {
-        $this->sizes = $this->blogPost->sizes;
+        if (empty($this->id)) {
+            $this->sizes = $this->blogPost->sizes;
+        }
         parent::save($options);
     }
 

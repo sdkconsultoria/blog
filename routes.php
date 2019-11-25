@@ -24,4 +24,6 @@ Route::group(['middleware' => ['web']], function () use ($prefix){
 
     Route::post('/admin/blog-post/addImage/{id}', $prefix.'\BlogPostController@saveImage')->name('blog-post.saveimage');
     Route::post('/admin/blog-post/removeImage/{id}', $prefix.'\BlogPostController@removeImage')->name('blog-post.removeimage');
+
+    Route::post('/admin/blog-post/images/save-sizes', $prefix.'\BlogPostController@saveImageSizes')->name('blog-post.image.save-size');
 });

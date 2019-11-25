@@ -194,4 +194,30 @@ class BlogPostController extends ResourceController
             'name' => $identifier
         ]);
     }
+
+    public function saveImageSizes(Request $request)
+    {
+        $image = BlogImage::find($request->input('id'));
+        $image->sizes = serialize(json_decode($request->input('sizes')));
+        $image->save();
+
+        switch ($request->input('save_type')) {
+            case 'only_this':
+                \Artisan::call('clear:images '.$image->id);
+                \Artisan::call('convert:images '.$image->id);
+                break;
+            case 'only_category':
+                \Artisan::call('clear:images '.$image->id.' --type');
+                \Artisan::call('convert:images '.$image->id.' --type');
+                break;
+            case 'only_blog':
+                \Artisan::call('clear:images --blog=' . $image->blog_posts_id);
+                \Artisan::call('convert:images --blog=' . $image->blog_posts_id);
+                break;
+
+            default:
+                // code...
+                break;
+        }
+    }
 }
