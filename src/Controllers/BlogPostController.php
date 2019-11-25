@@ -90,10 +90,8 @@ class BlogPostController extends ResourceController
                 $image->extension     =  $file->extension();
                 $image->blog_posts_id =  $model->id;
                 $image->save();
-
                 $file->storeAs('blogs/' . $model->id, $image->id . '.' . $file->extension(), 'public');
-
-                Images::convertImage('blogs/'.$model->id.'/', $image->id, $file->extension(), $model->blog->getSizes());
+                $image->convertImage();
             }
         }
 
@@ -105,6 +103,7 @@ class BlogPostController extends ResourceController
         $model = $this->findModel($id, 'id');
 
         $image = BlogImage::find($request->input('id_image'));
+        $image->removeImage(false);
         $image->delete();
 
         return response()->json([
@@ -198,13 +197,13 @@ class BlogPostController extends ResourceController
     public function saveImageSizes(Request $request)
     {
         $image = BlogImage::find($request->input('id'));
-        $image->sizes = serialize(json_decode($request->input('sizes')));
+        $image->sizes = serialize(json_decode($request->input('sizes'), TRUE));
         $image->save();
 
         switch ($request->input('save_type')) {
             case 'only_this':
-                \Artisan::call('clear:images '.$image->id);
-                \Artisan::call('convert:images '.$image->id);
+                $image->removeImage(false);
+                $image->convertImage();
                 break;
             case 'only_category':
                 \Artisan::call('clear:images '.$image->id.' --type');

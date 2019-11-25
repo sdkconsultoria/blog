@@ -93,7 +93,9 @@ class BlogPost extends ResourceModel
    public function save(array $options = [])
    {
        $this->generateSeoname();
-
+       if (empty($this->id)) {
+           $this->sizes = $this->blog->sizes;
+       }
        parent::save($options);
    }
 
