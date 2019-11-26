@@ -6,16 +6,16 @@ use Sdkconsultoria\Base\Widgets\Form\ActiveField;
 @endphp
 @extends('base::layouts.main')
 
-@section('title_tab', __('base::app.update', ['name' => $name]))
+@section('title_tab', __('base::app.update', ['name' => '"'.__('app.pages.'.$name).'"']))
 
 @section('breadcrumb')
     <?= BreadCrumb::generate([
-        'Active' => __('base::app.update', ['name' => $name]),
+        'Active' => __('base::app.update', ['name' => '"'.__('app.pages.'.$name).'"']),
         ]) ?>
 @endsection
 
 @section('content')
-    @card({{__('base::app.update', ['name' => $name])}})
+    @card({{__('base::app.update', ['name' => '"'.__('app.pages.'.$name).'"'])}})
     <?= Error::generate($errors) ?>
     <form enctype="multipart/form-data" action="{{route('blog-post.page', $model->identifier)}}" method="post" novalidate>
         @csrf
