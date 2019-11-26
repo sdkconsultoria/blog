@@ -25,6 +25,8 @@ class CreateBlogsTable extends Migration
             $table->string('identifier', 64)->nullable();
             $table->string('name', 64)->nullable();
             $table->string('seoname', 64)->nullable();
+            $table->string('title', 120)->nullable();
+            $table->string('subtitle')->nullable();
             $table->text('description')->nullable();
             $table->text('images_types')->nullable();
             $table->text('sizes')->nullable();

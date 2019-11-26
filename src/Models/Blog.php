@@ -30,6 +30,8 @@ class Blog extends ResourceModel
         return array_merge($attributes, [
             'name'         => __('base::attributes.name'),
             'seoname'      => __('base::attributes.sename'),
+            'title'        => __('base::messages.title'),
+            'subtitle'     => __('base::messages.subtitle'),
             'description'  => __('base::attributes.description'),
             'sizes'        => __('blog::blog.sizes'),
             'keys'         => __('blog::blog.keys'),

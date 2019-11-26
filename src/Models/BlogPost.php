@@ -56,6 +56,7 @@ class BlogPost extends ResourceModel
            'blogs_id'         => __('blog::blog.blogs_id'),
            'language'         => __('base::messages.language'),
            'title'            => __('base::messages.title'),
+           'subtitle'         => __('base::messages.subtitle'),
            'meta_author'      => __('blog::blog.meta_author'),
            'meta_description' => __('blog::blog.meta_description'),
            'meta_keywords'    => __('blog::blog.meta_keywords'),

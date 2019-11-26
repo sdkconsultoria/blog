@@ -184,8 +184,13 @@ class BlogController extends ResourceController
             $this->loadData($post, $request);
             $post->created_by = auth()->user()->id;
             $post->blogs_id   = $model->id;
+            $post->status     = BlogPost::STATUS_ACTIVE;
             $post->save();
+
+            $this->loadData($model, $request);
+            $model->save();
         }
+
         $posts = BlogPost::where('blogs_id', $model->id)->where('status', '!=', BlogPost::STATUS_DELETE)->paginate($this->filters['pagination']);
 
         return view($this->view . '.pages', [

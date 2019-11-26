@@ -34,5 +34,6 @@ return [
         'width'   => 'Ancho',
         'quality' => 'Calidad',
     ],
-    'add-pages' => 'Añadir nuevo :page'
+    'add-pages' => 'Añadir nuevo :page',
+    'edit-page' => 'Editar página'
 ];
