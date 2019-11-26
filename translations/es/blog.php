@@ -33,5 +33,6 @@ return [
         'height'  => 'Alto',
         'width'   => 'Ancho',
         'quality' => 'Calidad',
-    ]
+    ],
+    'add-pages' => 'Añadir nuevo :page'
 ];

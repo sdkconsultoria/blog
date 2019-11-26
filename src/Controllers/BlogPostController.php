@@ -168,32 +168,6 @@ class BlogPostController extends ResourceController
         ]);
     }
 
-    public function pages($identifier, Request $request)
-    {
-        $method = $request->method();
-        $model  = $this->model::where('identifier', $identifier)->first();
-
-        if (!$model) {
-            $model             = new $this->model();
-            $model->identifier = $identifier;
-            $model->created_by = auth()->user()->id;
-            $model->blogs_id   = 2;
-            $model->images_types = $model->blog->images_types;
-            $model->sizes = $model->blog->sizes;
-            $model->save();
-        }
-
-        if ($request->isMethod('put')) {
-            $this->loadData($model, $request);
-            $model->save();
-        }
-
-        return view($this->view . '.pages', [
-            'model' => $model,
-            'name' => $identifier
-        ]);
-    }
-
     public function saveImageSizes(Request $request)
     {
         $image = BlogImage::find($request->input('id'));

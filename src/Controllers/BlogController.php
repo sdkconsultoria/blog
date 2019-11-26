@@ -4,7 +4,7 @@ namespace Sdkconsultoria\Blog\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Sdkconsultoria\Base\Controllers\ResourceController;
-use Sdkconsultoria\Blog\Models\Blog;
+use Sdkconsultoria\Blog\Models\{Blog, BlogPost};
 
 class BlogController extends ResourceController
 {
@@ -161,6 +161,38 @@ class BlogController extends ResourceController
         $model->save();
 
         return response()->json([
+        ]);
+    }
+
+    public function pages($identifier, Request $request)
+    {
+        $method = $request->method();
+        $model  = $this->model::where('identifier', $identifier)->first();
+
+        if (!$model) {
+            $model               = new $this->model();
+            $model->identifier   = $identifier;
+            $model->created_by   = auth()->user()->id;
+            $model->images_types = serialize(config('base.images_types'));
+            $model->sizes        = serialize(config('base.images'));
+            $model->save();
+        }
+
+
+        $post  = new BlogPost();
+        if ($request->isMethod('post')) {
+            $this->loadData($post, $request);
+            $post->created_by = auth()->user()->id;
+            $post->blogs_id   = $model->id;
+            $post->save();
+        }
+        $posts = BlogPost::where('blogs_id', $model->id)->paginate($this->filters['pagination']);
+
+        return view($this->view . '.pages', [
+            'model' => $model,
+            'name'  => $identifier,
+            'posts' => $posts,
+            'post'  => $post
         ]);
     }
 }

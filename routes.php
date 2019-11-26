@@ -10,8 +10,8 @@ Route::group(['middleware' => ['web']], function () use ($prefix){
     Route::get('/admin/page/{page}', $prefix.'\BlogPostController@page')->name('blog-post.page');
     Route::put('/admin/page/{page}', $prefix.'\BlogPostController@page')->name('blog-post.page');
 
-    Route::get('/admin/pages/{page}', $prefix.'\BlogPostController@pages')->name('blog-post.pages');
-    Route::put('/admin/pages/{page}', $prefix.'\BlogPostController@pages')->name('blog-post.pages');
+    Route::get('/admin/pages/{page}', $prefix.'\BlogController@pages')->name('blog-post.pages');
+    Route::post('/admin/pages/{page}', $prefix.'\BlogController@pages')->name('blog-post.pages');
 
     Route::post('/admin/blog/addKey/{id}', $prefix.'\BlogController@addKey')->name('blog.addkey');
     Route::post('/admin/blog/removeKey/{id}', $prefix.'\BlogController@removeKey')->name('blog.removekey');
