@@ -30,7 +30,7 @@ use Sdkconsultoria\Base\Widgets\Grid\GridView;
        <div class="modal-dialog modal-lg" role="document">
            <div class="modal-content">
                <div class="modal-header">
-                   <h4 class="modal-title" id="myModalLabel17">Basic Modal</h4>
+                   <h4 class="modal-title" id="myModalLabel17">{{__('blog::blog.add-pages', ['page' => $name])}}</h4>
                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                        <span aria-hidden="true">×</span>
                    </button>
@@ -55,9 +55,15 @@ use Sdkconsultoria\Base\Widgets\Grid\GridView;
    </div>
 
     <?= GridView::generate([
-        'model' => $post,
+        'search' => false,
+        'model'  => $post,
         'models' => $posts,
         'route' => 'blog',
+        'action_column' => [
+            'class' => new \Sdkconsultoria\Base\Widgets\Grid\ActionColumn,
+            'template' => ['delete'],
+            'route' => 'blog-post.pages'
+        ],
         'attributes' => [
             'name',
             'description',

@@ -69,3 +69,14 @@ use Sdkconsultoria\Blog\Models\Blog;
     </form>
     @endcard()
 @endsection
+
+@section('custom_scripts')
+    <script type="text/javascript">
+    (function(window, document, $) {
+        'use strict';
+        $('.summernote').summernote({
+            height: 250,   //set editable area's height
+        });
+    })(window, document, jQuery);
+    </script>
+@endsection

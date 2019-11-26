@@ -12,6 +12,7 @@ Route::group(['middleware' => ['web']], function () use ($prefix){
 
     Route::get('/admin/pages/{page}', $prefix.'\BlogController@pages')->name('blog-post.pages');
     Route::post('/admin/pages/{page}', $prefix.'\BlogController@pages')->name('blog-post.pages');
+    Route::delete('/admin/page/{page}', $prefix.'\BlogController@deletePages')->name('blog-post.pages.destroy');
 
     Route::post('/admin/blog/addKey/{id}', $prefix.'\BlogController@addKey')->name('blog.addkey');
     Route::post('/admin/blog/removeKey/{id}', $prefix.'\BlogController@removeKey')->name('blog.removekey');

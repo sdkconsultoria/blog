@@ -186,7 +186,7 @@ class BlogController extends ResourceController
             $post->blogs_id   = $model->id;
             $post->save();
         }
-        $posts = BlogPost::where('blogs_id', $model->id)->paginate($this->filters['pagination']);
+        $posts = BlogPost::where('blogs_id', $model->id)->where('status', '!=', BlogPost::STATUS_DELETE)->paginate($this->filters['pagination']);
 
         return view($this->view . '.pages', [
             'model' => $model,
@@ -194,5 +194,14 @@ class BlogController extends ResourceController
             'posts' => $posts,
             'post'  => $post
         ]);
+    }
+
+    public function deletePages($id)
+    {
+        $model = BlogPost::find($id);
+        $model->status = BlogPost::STATUS_DELETE;
+        $model->save();
+
+        return redirect()->route('blog-post.pages', $model->blog->identifier);
     }
 }
