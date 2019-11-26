@@ -21,9 +21,6 @@ class BlogPost extends ResourceModel
            'blogs_id'         => 'required',
            'language'         => 'required',
            'title'            => 'required',
-           'meta_author'      => 'required',
-           'meta_description' => 'required',
-           'meta_keywords'    => 'required',
            'images.*'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
        ];
    }
