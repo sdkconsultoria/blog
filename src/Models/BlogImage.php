@@ -3,7 +3,7 @@
 namespace Sdkconsultoria\Blog\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Sdkconsultoria\Base\Helpers\Images;
+use Sdkconsultoria\Base\Helpers\{Images, Html};
 
 class BlogImage extends Model
 {
@@ -33,5 +33,14 @@ class BlogImage extends Model
     public function convertImage()
     {
         Images::convertImage('blogs/'.$this->blog_posts_id.'/', $this->id, $this->extension, $this->sizes);
+    }
+
+    public function getImage($size = 'medium', $htmlOptions = [], $options = [])
+    {
+        return Html::image(
+            'storage/blogs/'.$this->blog_posts_id.'/'.$this->id.'-'.$size.'.jpg',
+            array_merge($htmlOptions, ['alt' => $this->alt]),
+            $options
+        );
     }
 }

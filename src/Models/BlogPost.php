@@ -90,6 +90,21 @@ class BlogPost extends ResourceModel
        return $this->hasMany('Sdkconsultoria\Blog\Models\BlogImage', 'blog_posts_id', 'id');
    }
 
+   public function getImage($type = false, $limit = true)
+   {
+       $response = $this->images();
+       if ($type) {
+           $response  = $response->where('type', $type);
+       }
+
+       if ($limit) {
+           return $response->first();
+       }
+
+       return $response->get();
+
+   }
+
    public function save(array $options = [])
    {
        $this->generateSeoname();
