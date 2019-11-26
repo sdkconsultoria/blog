@@ -2,7 +2,7 @@
 
 $prefix = 'Sdkconsultoria\Blog\Controllers';
 
-Route::group(['middleware' => ['web']], function () use ($prefix){
+Route::group(['middleware' => ['web', 'role:super-admin']], function () use ($prefix){
     Route::resource('admin/blog', $prefix.'\BlogController')->middleware('auth');
 
     Route::resource('admin/blog-post', $prefix.'\BlogPostController')->middleware('auth');
