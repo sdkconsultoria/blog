@@ -24,6 +24,9 @@ use Sdkconsultoria\Base\Widgets\Form\ActiveField;
             <div class="col-md-12">
                 <?= ActiveField::Input($model, 'title')?>
             </div>
+            <div class="col-md-12">
+                <?= ActiveField::Input($model, 'subtitle')?>
+            </div>
         </div>
 
         <div class="form-group row">
