@@ -84,6 +84,8 @@ use Sdkconsultoria\Blog\Models\Blog;
        only_blog="<?=__('base::messages.blogs.only_blog')?>"
        sure_continue="<?=__('base::messages.sure_continue')?>"
        save_sizes_url="{{route('blog-post.image.save-size')}}"
+       link_url="/storage/blogs/"
+       key_image="blog_posts_id"
    ></images-component>
 </div>
 
