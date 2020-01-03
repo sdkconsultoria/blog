@@ -57,7 +57,7 @@ class BlogPost extends ResourceModel
            'meta_author'      => __('blog::blog.meta_author'),
            'meta_description' => __('blog::blog.meta_description'),
            'meta_keywords'    => __('blog::blog.meta_keywords'),
-           'images'           => __('base::attributes.images'),
+           'images'           => __('base::attributes.images.items'),
        ]);
    }
 
