@@ -92,7 +92,12 @@ class BlogPost extends ResourceModel
    {
        $response = $this->images();
        if ($type) {
-           $response  = $response->where('type', $type);
+           if (is_array($type)) {
+               $response  = $response->whereIn('type', $type);
+           } else {
+               $response  = $response->where('type', $type);
+           }
+
        }
 
        if ($limit) {
