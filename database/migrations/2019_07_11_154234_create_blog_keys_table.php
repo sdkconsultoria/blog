@@ -28,8 +28,8 @@ class CreateBlogKeysTable extends Migration
 
             $table->string('name', 64);
             $table->string('seoname', 64);
-            $table->string('value', 64)->nullable();
-            $table->string('seovalue', 64)->nullable();
+            $table->string('value')->nullable();
+            $table->string('seovalue')->nullable();
         });
     }
 
