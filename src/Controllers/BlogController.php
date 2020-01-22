@@ -4,6 +4,7 @@ namespace Sdkconsultoria\Blog\Controllers;
 use Illuminate\Http\Request;
 use Sdkconsultoria\Base\Controllers\ResourceController;
 use Sdkconsultoria\Blog\Models\{Blog, BlogPost};
+use Sdkconsultoria\Base\Traits\SizeModel;
 
 class BlogController extends ResourceController
 {
@@ -103,39 +104,6 @@ class BlogController extends ResourceController
         ]);
     }
 
-
-    public function addSize(String $id, Request $request)
-    {
-        $model = $this->findModel($id, 'id');
-
-        $sizes = $model->getSizes();
-        array_push($sizes, [
-            'name' => $request->post('name'),
-            'height' => $request->post('height'),
-            'width' => $request->post('width'),
-            'quality' => (int) $request->post('quality'),
-        ]);
-
-        $model->sizes = serialize($sizes);
-        $model->save();
-
-        return response()->json([
-        ]);
-    }
-
-    public function removeSize($id, Request $request)
-    {
-        $model = $this->findModel($id, 'id');
-
-        $sizes = $model->getSizes();
-        array_splice($sizes, $request->post('index'), 1);
-        $model->sizes = serialize($sizes);
-        $model->save();
-
-        return response()->json([
-        ]);
-    }
-
     public function addImage(String $id, Request $request)
     {
         $model = $this->findModel($id, 'id');
@@ -208,4 +176,6 @@ class BlogController extends ResourceController
 
         return redirect()->route('blog-post.pages', $model->blog->identifier);
     }
+
+    use SizeModel;
 }

@@ -30,9 +30,18 @@ return [
     'meta_keywords'       => 'Meta keywords',
 
     'images' => [
-        'height'  => 'Alto',
-        'width'   => 'Ancho',
-        'quality' => 'Calidad',
+        'name'             => 'Tamaño',
+        'height'           => 'Alto',
+        'width'            => 'Ancho',
+        'quality'          => 'Calidad',
+        'transparency'     => 'Transparencia',
+        'resizing'         => 'Redimensionando',
+        'resizing_options' => [
+            'crop'         => 'Recortar',
+            'zoom'         => 'Zoom',
+            'aspect_ratio' => 'Conservar relación de aspecto',
+            'aspect_ratio' => 'ignorar relación de aspecto',
+        ],
     ],
     'add-pages' => 'Añadir nuevo :page',
     'edit-page' => 'Editar página'
