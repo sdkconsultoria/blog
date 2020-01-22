@@ -2,7 +2,6 @@
 namespace Sdkconsultoria\Blog\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Sdkconsultoria\Base\Controllers\ResourceController;
 use Sdkconsultoria\Blog\Models\{Blog, BlogPost};
 
