@@ -22,7 +22,7 @@ use Sdkconsultoria\Base\Helpers\SizeComponent;
 ></keys-component>
 
 <h2>@lang('blog::blog.sizes')</h2>
-<?= SizeComponent::generate(json_encode($model->sizes), 'blog', $model->id)->render() ?>
+<?= SizeComponent::generate(json_encode(unserialize($model->sizes)), 'blog', $model->id)->render() ?>
 
 
 <h2>@lang('blog::blog.images_types')</h2>
