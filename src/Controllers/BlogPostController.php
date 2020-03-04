@@ -26,12 +26,22 @@ class BlogPostController extends ResourceController
             $model = new $this->model();
         }
 
-        $blog = Blog::where('seoname', $blog)->orWhere('id', $blog)->first();
+        $blog = Blog::where('seoname', $blog)->orWhere('id', $blog)->orWhere('identifier', $blog)->first();
 
         if ($blog) {
             $model->blogs_id = $blog->id;
         }
         return view($this->view . '.create', compact('model'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function blog($blog = '')
+    {
+        dd('hola');
     }
 
     /**
