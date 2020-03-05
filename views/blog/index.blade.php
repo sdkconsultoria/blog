@@ -24,6 +24,17 @@ use Sdkconsultoria\Base\Widgets\Messages\Alert;
         'model' => $model,
         'models' => $models,
         'route' => 'blog',
+        'action_column' => [
+            'class' => new \Sdkconsultoria\Base\Widgets\Grid\ActionColumn,
+            'template' => ['delete', 'show', 'edit', [
+                'params' => [
+                    'title' => ''
+                ],
+                ':route' => ['name' => 'blog-post.blogs', 'blog' => function($model){return $model->seoname;}],
+                'template' => '<a href=":route" class="btn btn-info"> <i class="la la-magic" aria-hidden="true"></i> </a>'
+                ]],
+            'route' => 'blog-post'
+        ],
         'attributes' => [
             'name',
             'created_at',
