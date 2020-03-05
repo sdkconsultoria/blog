@@ -12,7 +12,7 @@ Route::prefix('admin')
     Route::put('page/{page}', 'BlogPostController@page')->name('blog-post.page');
 
     Route::get('pages/{page}', 'BlogController@pages')->name('blog-post.pages');
-    Route::get('pages/blog/{blog}', 'BlogPostController@blog')->name('blog-post.blog');
+    Route::get('pages/blog/{blog}', 'BlogPostController@blogs')->name('blog-post.blogs');
     Route::post('pages/{page}', 'BlogController@pages')->name('blog-post.pages');
     Route::delete('page/{page}', 'BlogController@deletePages')->name('blog-post.pages.destroy');
 

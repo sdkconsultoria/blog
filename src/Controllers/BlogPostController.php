@@ -11,7 +11,7 @@ class BlogPostController extends ResourceController
     protected $model       = 'Sdkconsultoria\Blog\Models\BlogPost';
     protected $view        = 'blog::blog-post';
     protected $resource    = 'blog-post';
-    protected $createEmpty = false;
+    protected $createEmpty = true;
 
     /**
      * Show the form for creating a new resource.
@@ -20,17 +20,18 @@ class BlogPostController extends ResourceController
      */
     public function create($blog = '')
     {
-        if ($this->createEmpty) {
-            $model = $this->createOrFind();
-        }else{
-            $model = new $this->model();
-        }
+
 
         $blog = Blog::where('seoname', $blog)->orWhere('id', $blog)->orWhere('identifier', $blog)->first();
 
         if ($blog) {
+            $model = $this->createOrFind();
             $model->blogs_id = $blog->id;
+            $model->save();
+        }else{
+            $model = new $this->model();
         }
+
         return view($this->view . '.create', compact('model'));
     }
 
@@ -39,9 +40,34 @@ class BlogPostController extends ResourceController
      *
      * @return \Illuminate\Http\Response
      */
-    public function blog($blog = '')
+    public function blogs(Request $request, $blog = '')
     {
-        dd('hola');
+        $blog = Blog::where('seoname', $blog)->first();
+        if (!$blog) {
+            abort(404, 'base::messages.not_found');
+        }
+
+        $model = new $this->model();
+
+        if (!$request->input('status')) {
+            $models = $this->model::where($model->getTable().'.status', '!=', $this->model::STATUS_DELETE)
+            ->where($model->getTable().'.status', '!=',$this->model::STATUS_CREATE);
+        }else{
+            $models = $this->model::where($model->getTable().'.id', '>', '0');
+        }
+
+        $models = $models->where('blogs_id', $blog->id);
+
+        $models = $models->where($model->getTable().'.status', '!=' ,'0');
+
+        $models   = Self::getOrder($models, $request->get('order'));
+        if ($request->input('pagination')) {
+            $this->filters['pagination'] = $request->input('pagination');
+        }
+        $models   = Self::setFilter($models, $request);
+        $models   = $models->paginate($this->filters['pagination'])->appends($this->filters);
+
+        return view($this->view . '.blogs', compact('models', 'model', 'blog'));
     }
 
     /**
@@ -64,7 +90,9 @@ class BlogPostController extends ResourceController
             $model->addKey($value, $request->input($value['name']));
         }
 
-        return redirect()->route($this->resource . '.index')->with('success', __('base::messages.saved'));
+        $this->saveImages($model, $request);
+
+        return redirect()->route($this->resource . '.blogs', $model->blog->seoname)->with('success', __('base::messages.saved'));
     }
 
     /**
@@ -87,6 +115,13 @@ class BlogPostController extends ResourceController
             $model->addKey($value, $request->input($value['name']));
         }
 
+        $this->saveImages($model, $request);
+
+        return redirect()->route($this->resource . '.index')->with('success', __('base::messages.saved'));
+    }
+
+    private function saveImages($model, $request)
+    {
         if($request->hasfile('blog_posts_images'))
         {
             foreach($request->file('blog_posts_images') as $file)
@@ -103,8 +138,6 @@ class BlogPostController extends ResourceController
                 $image->convertImage();
             }
         }
-
-        return redirect()->route($this->resource . '.index')->with('success', __('base::messages.saved'));
     }
 
     public function removeImage($id, Request $request)
