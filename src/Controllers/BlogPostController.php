@@ -20,14 +20,10 @@ class BlogPostController extends ResourceController
      */
     public function create($blog = '')
     {
-
-
         $blog = Blog::where('seoname', $blog)->orWhere('id', $blog)->orWhere('identifier', $blog)->first();
 
         if ($blog) {
-            $model = $this->createOrFind();
-            $model->blogs_id = $blog->id;
-            $model->save();
+            $model = $this->createOrFind(['blogs_id' => $blog->id]);
         }else{
             $model = new $this->model();
         }
@@ -81,7 +77,7 @@ class BlogPostController extends ResourceController
         $this->validate($request);
 
         $model = new $this->model();
-        $model->status = $this->model::STATUS_ACTIVE;
+        $model->status = \Sdkconsultoria\Blog\Models\BlogPost::STATUS_ACTIVE;
         $model->created_by = \Auth::user()->id;
         $this->loadData($model, $request);
         $model->save();
@@ -172,6 +168,7 @@ class BlogPostController extends ResourceController
 
         if (!$model) {
             $model             = new $this->model();
+            $model->status     = \Sdkconsultoria\Blog\Models\BlogPost::STATUS_ACTIVE;
             $model->identifier = $identifier;
             $model->created_by = auth()->user()->id;
             $model->blogs_id   = 2;
