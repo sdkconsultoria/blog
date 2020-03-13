@@ -16,7 +16,6 @@ class CreateBlogImagesTable extends Migration
         Schema::create('blog_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-
             $table->commonFields();
 
             $table->unsignedBigInteger('blog_post_id')->unsigned()->index();

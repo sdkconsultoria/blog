@@ -19,13 +19,16 @@ class CreateBlogPostsTable extends Migration
             $table->timestamps();
             $table->commonFields();
 
-            $table->unsignedBigInteger('blog_id')->unsigned()->index();
+            $table->unsignedBigInteger('blog_id')->unsigned()->index()->nullable();
             $table->foreign('blog_id')->references('id')->on('blogs')->onDelete('restrict');
 
             $table->unsignedBigInteger('blog_post_id')->unsigned()->index()->nullable();
             $table->foreign('blog_post_id')->references('id')->on('blog_posts')->onDelete('restrict');
 
-            $table->string('identifier', 64)->nullable();
+            $table->unsignedBigInteger('parent_id')->unsigned()->index()->nullable();
+            $table->foreign('parent_id')->references('id')->on('blog_posts')->onDelete('restrict');
+
+            $table->string('identifier', 64)->unique()->nullable();
             $table->string('name', 64)->nullable();
             $table->string('seoname', 64)->nullable();
             $table->string('language', 10)->nullable();
