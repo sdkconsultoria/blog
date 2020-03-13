@@ -18,7 +18,7 @@ class BlogPost extends ResourceModel
        return [
            'name'             => 'required|min:3',
            'description'      => 'required',
-           'blogs_id'         => 'required',
+           'blog_id'         => 'required',
            'language'         => 'required',
            'title'            => 'required',
            'images.*'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -33,7 +33,7 @@ class BlogPost extends ResourceModel
    public static function rulesUpdate($params)
    {
        $validate = Self::rules($params);
-       unset($validate['blogs_id']);
+       unset($validate['blog_id']);
        return $validate;
    }
 
@@ -49,8 +49,8 @@ class BlogPost extends ResourceModel
            'name'             => __('base::attributes.name'),
            'seoname'          => __('base::attributes.seoname'),
            'description'      => __('base::attributes.description'),
-           'blog_posts_id'    => __('blog::blog.blog_posts_id'),
-           'blogs_id'         => __('blog::blog.blogs_id'),
+           'blog_post_id'    => __('blog::blog.blog_post_id'),
+           'blog_id'         => __('blog::blog.blog_id'),
            'language'         => __('base::messages.language'),
            'title'            => __('base::messages.title'),
            'subtitle'         => __('base::messages.subtitle'),
@@ -71,7 +71,7 @@ class BlogPost extends ResourceModel
        $attributes = parent::getFiltersAttribute();
        return array_merge([
            'name',
-           'blogs_id' => [
+           'blog_id' => [
                'join' => 'blogs',
                'column' => 'name'
            ]
@@ -80,12 +80,12 @@ class BlogPost extends ResourceModel
 
    public function blog()
    {
-       return $this->hasOne('Sdkconsultoria\Blog\Models\Blog', 'id', 'blogs_id');
+       return $this->hasOne('Sdkconsultoria\Blog\Models\Blog', 'id', 'blog_id');
    }
 
    public function images()
    {
-       return $this->hasMany('Sdkconsultoria\Blog\Models\BlogImage', 'blog_posts_id', 'id');
+       return $this->hasMany('Sdkconsultoria\Blog\Models\BlogImage', 'blog_post_id', 'id');
    }
 
    public function getImage($type = false, $limit = true)
@@ -130,7 +130,7 @@ class BlogPost extends ResourceModel
 
    public function getKeys()
    {
-       return $this->hasMany('Sdkconsultoria\Blog\Models\BlogKey', 'blog_posts_id', 'id');
+       return $this->hasMany('Sdkconsultoria\Blog\Models\BlogKey', 'blog_post_id', 'id');
    }
 
    public function getKeyValue($key)
@@ -152,7 +152,7 @@ class BlogPost extends ResourceModel
        }
 
        $model = new BlogKey();
-       $model->blog_posts_id = $this->id;
+       $model->blog_post_id = $this->id;
        $model->created_by = auth()->user()->id;
        $model->name = $key['name'];
        $model->value = $value;
@@ -161,13 +161,13 @@ class BlogPost extends ResourceModel
 
    public function saveKey($label, $value)
    {
-       $key =  BlogKey::where('blog_posts_id', $this->id)->where('name', $label)->first();
+       $key =  BlogKey::where('blog_post_id', $this->id)->where('name', $label)->first();
 
        if ($key) {
            $key->value = $value;
        }else{
            $key                = new BlogKey();
-           $key->blog_posts_id = $this->id;
+           $key->blog_post_id = $this->id;
            $key->created_by    = auth()->user()->id;
            $key->name          = $label;
            $key->value         = $value;

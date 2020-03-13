@@ -92,7 +92,7 @@ use Sdkconsultoria\Base\Widgets\Form\ActiveField;
                only_blog="<?=__('base::messages.blogs.only_blog')?>"
                sure_continue="<?=__('base::messages.sure_continue')?>"
                link_url="/storage/blogs/"
-               key_image="blog_posts_id"
+               key_image="blog_post_id"
            ></images-component>
         </div>
 

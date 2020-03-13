@@ -23,7 +23,7 @@ class BlogPostController extends ResourceController
         $blog = Blog::where('seoname', $blog)->orWhere('id', $blog)->orWhere('identifier', $blog)->first();
 
         if ($blog) {
-            $model = $this->createOrFind(['blogs_id' => $blog->id]);
+            $model = $this->createOrFind(['blog_id' => $blog->id]);
         }else{
             $model = new $this->model();
         }
@@ -52,7 +52,7 @@ class BlogPostController extends ResourceController
             $models = $this->model::where($model->getTable().'.id', '>', '0');
         }
 
-        $models = $models->where('blogs_id', $blog->id);
+        $models = $models->where('blog_id', $blog->id);
 
         $models = $models->where($model->getTable().'.status', '!=' ,'0');
 
@@ -128,7 +128,7 @@ class BlogPostController extends ResourceController
                 $image = new BlogImage();
                 $image->created_by    = \Auth::user()->id;
                 $image->extension     =  $file->extension();
-                $image->blog_posts_id =  $model->id;
+                $image->blog_post_id =  $model->id;
                 $image->save();
                 $file->storeAs('blogs/' . $model->id, $image->id . '.' . $file->extension(), 'public');
                 $image->convertImage();
@@ -171,7 +171,7 @@ class BlogPostController extends ResourceController
             $model->status     = \Sdkconsultoria\Blog\Models\BlogPost::STATUS_ACTIVE;
             $model->identifier = $identifier;
             $model->created_by = auth()->user()->id;
-            $model->blogs_id   = 2;
+            $model->blog_id   = 2;
             $model->images_types = $model->blog->images_types;
             $model->sizes = $model->blog->sizes;
             $model->save();
@@ -191,7 +191,7 @@ class BlogPostController extends ResourceController
                     $image = new BlogImage();
                     $image->created_by    = \Auth::user()->id;
                     $image->extension     =  $file->extension();
-                    $image->blog_posts_id =  $model->id;
+                    $image->blog_post_id =  $model->id;
                     $image->save();
 
                     $file->storeAs('blogs/' . $model->id, $image->id . '.' . $file->extension(), 'public');
@@ -223,8 +223,8 @@ class BlogPostController extends ResourceController
                 \Artisan::call('convert:images '.$image->id.' --type');
                 break;
             case 'only_blog':
-                \Artisan::call('clear:images --blog=' . $image->blog_posts_id);
-                \Artisan::call('convert:images --blog=' . $image->blog_posts_id);
+                \Artisan::call('clear:images --blog=' . $image->blog_post_id);
+                \Artisan::call('convert:images --blog=' . $image->blog_post_id);
                 break;
 
             default:

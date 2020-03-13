@@ -28,7 +28,7 @@
             'created_at',
             'language',
             [
-                'attribute' => 'blogs_id',
+                'attribute' => 'blog_id',
                 'value' => function($model){
                     return $model->blog->name;
                 }

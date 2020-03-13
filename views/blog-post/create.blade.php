@@ -23,9 +23,9 @@ use Sdkconsultoria\Blog\Models\Blog;
         @csrf
         <div class="form-group row">
             <div class="col-md-6">
-                <?= ActiveField::Input($model, 'blogs_id')
+                <?= ActiveField::Input($model, 'blog_id')
                 ->select(Blog::getSelect(), [
-                    'id' => 'blogs_id',
+                    'id' => 'blog_id',
                     'data-url' => route('blog-post.create-blog', 'default')
                     ])?>            </div>
             <div class="col-md-6">
@@ -101,7 +101,7 @@ use Sdkconsultoria\Blog\Models\Blog;
                sure_continue="<?=__('base::messages.sure_continue')?>"
                save_sizes_url="{{route('blog-post.image.save-size')}}"
                link_url="/storage/blogs/"
-               key_image="blog_posts_id"
+               key_image="blog_post_id"
            ></images-component>
         </div>
 

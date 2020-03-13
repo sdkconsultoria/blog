@@ -17,11 +17,10 @@ class CreateBlogImagesTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->unsignedBigInteger('created_by')->unsigned()->index();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('restrict');
+            $table->commonFields();
 
-            $table->unsignedBigInteger('blog_posts_id')->unsigned()->index();
-            $table->foreign('blog_posts_id')->references('id')->on('blog_posts')->onDelete('restrict');
+            $table->unsignedBigInteger('blog_post_id')->unsigned()->index();
+            $table->foreign('blog_post_id')->references('id')->on('blog_posts')->onDelete('restrict');
 
             $table->string('type', 30)->nullable();
             $table->string('extension', 6);

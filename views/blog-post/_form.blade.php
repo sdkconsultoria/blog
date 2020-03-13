@@ -5,10 +5,10 @@ use Sdkconsultoria\Blog\Models\Blog;
 
 <div class="form-group row">
     <div class="col-md-6">
-        <?= ActiveField::Input($model, 'blogs_id')
+        <?= ActiveField::Input($model, 'blog_id')
         ->select(Blog::getSelect(), [
             'disabled' => 'true',
-            'id' => 'blogs_id',
+            'id' => 'blog_id',
             'readOnly' => true,
             'data-url' => route('blog-post.create-blog', 'default')
             ])?>
@@ -85,7 +85,7 @@ use Sdkconsultoria\Blog\Models\Blog;
        sure_continue="<?=__('base::messages.sure_continue')?>"
        save_sizes_url="{{route('blog-post.image.save-size')}}"
        link_url="/storage/blogs/"
-       key_image="blog_posts_id"
+       key_image="blog_post_id"
    ></images-component>
 </div>
 

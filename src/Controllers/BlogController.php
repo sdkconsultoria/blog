@@ -150,7 +150,7 @@ class BlogController extends ResourceController
         if ($request->isMethod('post')) {
             $this->loadData($post, $request);
             $post->created_by = auth()->user()->id;
-            $post->blogs_id   = $model->id;
+            $post->blog_id   = $model->id;
             $post->status     = BlogPost::STATUS_ACTIVE;
             $post->save();
 
@@ -158,7 +158,7 @@ class BlogController extends ResourceController
             $model->save();
         }
 
-        $posts = BlogPost::where('blogs_id', $model->id)->where('status', '!=', BlogPost::STATUS_DELETE)->paginate($this->filters['pagination']);
+        $posts = BlogPost::where('blog_id', $model->id)->where('status', '!=', BlogPost::STATUS_DELETE)->paginate($this->filters['pagination']);
 
         return view($this->view . '.pages', [
             'model' => $model,

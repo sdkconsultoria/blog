@@ -16,12 +16,11 @@ class CreateBlogVideosTable extends Migration
         Schema::create('blog_videos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->commonFields();
 
-            $table->unsignedBigInteger('created_by')->unsigned()->index();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('restrict');
 
-            $table->unsignedBigInteger('blog_posts_id')->unsigned()->index()->nullable();
-            $table->foreign('blog_posts_id')->references('id')->on('blog_posts')->onDelete('restrict');
+            $table->unsignedBigInteger('blog_post_id')->unsigned()->index()->nullable();
+            $table->foreign('blog_post_id')->references('id')->on('blog_posts')->onDelete('restrict');
 
             $table->string('type', 30);
             $table->string('extension', 6);

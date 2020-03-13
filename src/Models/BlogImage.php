@@ -9,7 +9,7 @@ class BlogImage extends Model
 {
     public function blogPost()
     {
-        return $this->hasOne('Sdkconsultoria\Blog\Models\BlogPost', 'id', 'blog_posts_id');
+        return $this->hasOne('Sdkconsultoria\Blog\Models\BlogPost', 'id', 'blog_post_id');
     }
 
     public function save(array $options = [])
@@ -27,18 +27,18 @@ class BlogImage extends Model
 
     public function removeImage($rm_original = true)
     {
-        Images::removeImage('blogs/'.$this->blog_posts_id.'/', $this->id, $this->extension, $rm_original);
+        Images::removeImage('blogs/'.$this->blog_post_id.'/', $this->id, $this->extension, $rm_original);
     }
 
     public function convertImage()
     {
-        Images::convertImage('blogs/'.$this->blog_posts_id.'/', $this->id, $this->extension, $this->sizes);
+        Images::convertImage('blogs/'.$this->blog_post_id.'/', $this->id, $this->extension, $this->sizes);
     }
 
     public function getImage($size = 'medium', $htmlOptions = [], $options = [])
     {
         return Html::image(
-            'storage/blogs/'.$this->blog_posts_id.'/'.$this->id.'-'.$size.'.jpg',
+            'storage/blogs/'.$this->blog_post_id.'/'.$this->id.'-'.$size.'.jpg',
             array_merge($htmlOptions, ['alt' => $this->alt]),
             $options
         );
