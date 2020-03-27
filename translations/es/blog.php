@@ -13,6 +13,7 @@ return [
     'keys'            => 'Extra keys',
     'sizes'           => 'Tamaños',
     'images_types'    => 'Tipos',
+    'parent_id'       => 'Categoría padre',
 
     /**
      * Blogs posts translates

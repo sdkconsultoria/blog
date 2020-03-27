@@ -31,3 +31,11 @@ Route::prefix('admin')
     Route::post('blog-post/images/save-sizes', 'BlogPostController@saveImageSizes')->name('blog-post.image.save-size');
 
 });
+//
+// Route::namespace('\App\Http\Controllers\Front')
+// ->middleware(['menu'])
+// ->group(function () {
+//     Route::get('/categories', 'BlogController@categories')->name('blog-categories');
+//     Route::get('/category/{seoname}', 'BlogController@category')->name('blog-category');
+//     Route::get('/post/{seoname}', 'BlogController@post')->name('blog');
+// });

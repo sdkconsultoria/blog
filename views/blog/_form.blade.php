@@ -1,10 +1,12 @@
 @php
 use Sdkconsultoria\Base\Widgets\Form\ActiveField;
 use Sdkconsultoria\Base\Helpers\SizeComponent;
+use Sdkconsultoria\Blog\Models\Blog;
 @endphp
 
 <?= ActiveField::Input($model, 'name')?>
 <?= ActiveField::Input($model, 'description')->textArea()?>
+<?= ActiveField::Input($model, 'parent_id')->select(Blog::getSelect())?>
 
 <h2>@lang('blog::blog.keys')</h2>
 <keys-component

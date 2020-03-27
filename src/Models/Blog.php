@@ -36,6 +36,7 @@ class Blog extends ResourceModel
             'sizes'        => __('blog::blog.sizes'),
             'keys'         => __('blog::blog.keys'),
             'images_types' => __('blog::blog.images_types'),
+            'parent_id' => __('blog::blog.parent_id'),
         ]);
     }
 
@@ -80,5 +81,34 @@ class Blog extends ResourceModel
     {
         $this->generateSeoname();
         parent::save($options);
+    }
+
+    /**
+     * Scope a query to only parents blogs.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeParents($query)
+    {
+        return $query->where('status', self::STATUS_ACTIVE)->whereNull('parent_id');
+    }
+
+    public function childs(){
+        return $this->hasMany('Sdkconsultoria\Blog\Models\Blog', 'parent_id', 'id')->where('status', self::STATUS_ACTIVE);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo('Sdkconsultoria\Blog\Models\Blog', 'parent_id', 'id');
+    }
+
+    public function translate()
+    {
+        return $this->hasOne('Sdkconsultoria\Blog\Models\Blog', 'blog_id', 'id');
+    }
+
+    public function blogs(){
+        return $this->hasMany('Sdkconsultoria\Blog\Models\BlogPost', 'blog_id', 'id')->where('status', self::STATUS_ACTIVE);
     }
 }
