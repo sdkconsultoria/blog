@@ -16,19 +16,19 @@ trait BlogControllerTrait
         $params['blog_identifier']      = $params['blog_identifier']??'identifier';
 
         $blog      = $this->getBlog($params['blog'], $params['blog_identifier']);
-        $blog_post = BlogPost::where($params['blog_post_identifier'], $params['blog_post'])->where('blog_id', $blog->id)->with('images')->first();
+        $blog_post = BlogPost::where($params['blog_post_identifier'], $params['blog_post'])->where('blog_id', $blog->id)->with('images')->firstOrFail();
 
         return $blog_post;
     }
 
     protected function getSinglePost($post, $key = 'seoname')
     {
-        return BlogPost::where($key, $post)->where('status', BlogPost::STATUS_ACTIVE)->with('images')->first();
+        return BlogPost::where($key, $post)->where('status', BlogPost::STATUS_ACTIVE)->with('images')->firstOrFail();
     }
 
     protected function getBlog($blog, $identifier = 'identifier')
     {
-        return Blog::where($identifier, $blog)->first();
+        return Blog::where($identifier, $blog)->firstOrFail();
     }
 
     protected function getPosts($blog)

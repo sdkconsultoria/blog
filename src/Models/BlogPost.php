@@ -18,7 +18,7 @@ class BlogPost extends ResourceModel
        return [
            'name'             => 'required|min:3',
            'description'      => 'required',
-           'blog_id'         => 'required',
+           'blog_id'          => 'required',
            'language'         => 'required',
            'title'            => 'required',
            'images.*'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -81,6 +81,16 @@ class BlogPost extends ResourceModel
    public function blog()
    {
        return $this->hasOne('Sdkconsultoria\Blog\Models\Blog', 'id', 'blog_id');
+   }
+
+   public function parent()
+   {
+       return $this->belongsTo('Sdkconsultoria\Blog\Models\BlogPost', 'parent_id', 'id');
+   }
+
+   public function childs()
+   {
+       return $this->hasMany('Sdkconsultoria\Blog\Models\BlogPost', 'parent_id', 'id')->where('status', self::STATUS_ACTIVE);
    }
 
    public function images()
@@ -174,5 +184,35 @@ class BlogPost extends ResourceModel
        }
 
        $key->save();
+   }
+
+   public function getBreadcrumb()
+   {
+       return $this->blog->getBreadcrumb(true);
+   }
+
+   public function getParentCategories()
+   {
+       return array_reverse($this->getParentCategory(false, true));
+   }
+
+   public function getParentCategory($post = false)
+   {
+       if (!$post) {
+           $post = $this;
+           if ($current) {
+               $categories = [$post];
+           }else{
+               $categories = [];
+           }
+       }else{
+           $categories = [$post];
+       }
+
+       if ($post->parent_id) {
+           $categories = array_merge($categories, $this->getParentCategory($post->parent));
+       }
+
+       return $categories;
    }
 }

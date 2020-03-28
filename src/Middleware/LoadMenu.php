@@ -39,19 +39,19 @@ class LoadMenu
             $submenu['items'][] = $this->generateMenu($sub_item);
         }
 
-        $submenu['items'] = array_merge($submenu['items'], $this->generateBlogs($item->blogs));
+        $submenu['items'] = array_merge($submenu['items'], $this->generatePosts($item->posts));
 
         return $submenu;
     }
 
-    protected function generateBlogs($blogs)
+    protected function generatePosts($blogs)
     {
         $menu_blogs = [];
 
         foreach ($blogs as $key => $blog) {
             $menu_blogs[] = [
                 'name' => $blog->name,
-                'url'  => ['blog', $blog->seoname]
+                'url'  => ['post', $blog->seoname]
             ];
         }
 

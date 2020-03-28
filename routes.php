@@ -37,5 +37,5 @@ Route::prefix('admin')
 // ->group(function () {
 //     Route::get('/categories', 'BlogController@categories')->name('blog-categories');
 //     Route::get('/category/{seoname}', 'BlogController@category')->name('blog-category');
-//     Route::get('/post/{seoname}', 'BlogController@post')->name('blog');
+//     Route::get('/post/{seoname}', 'BlogController@post')->name('post');
 // });

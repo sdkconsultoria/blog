@@ -108,7 +108,43 @@ class Blog extends ResourceModel
         return $this->hasOne('Sdkconsultoria\Blog\Models\Blog', 'blog_id', 'id');
     }
 
-    public function blogs(){
+    public function posts(){
         return $this->hasMany('Sdkconsultoria\Blog\Models\BlogPost', 'blog_id', 'id')->where('status', self::STATUS_ACTIVE);
+    }
+
+    public function getBreadcrumb($current = false, $route = 'blog-category')
+    {
+        $categories = [];
+        foreach ($this->getParentCategories($current) as $key => $category) {
+            $categories[$category->name] = [$route, $category->seoname];
+        }
+
+        return $categories;
+    }
+
+    public function getParentCategories($current)
+    {
+        return array_reverse($this->getParentCategory(false, $current));
+    }
+
+    public function getParentCategory($blog = false, $current = false)
+    {
+        if (!$blog) {
+            $blog = $this;
+            if ($current) {
+                $categories = [$blog];
+            }else{
+                $categories = [];
+            }
+        }else{
+            $categories = [$blog];
+        }
+
+
+        if ($blog->parent_id) {
+            $categories = array_merge($categories, $this->getParentCategory($blog->parent));
+        }
+
+        return $categories;
     }
 }
