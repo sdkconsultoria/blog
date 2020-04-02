@@ -34,7 +34,8 @@ class CreateBlogPostsTable extends Migration
             $table->string('language', 10)->nullable();
             $table->string('title', 120)->nullable();
             $table->string('subtitle')->nullable();
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
+            $table->text('short_description')->nullable();
             $table->string('meta_author', 120)->nullable();
             $table->string('meta_description', 120)->nullable();
             $table->string('meta_keywords', 120)->nullable();
