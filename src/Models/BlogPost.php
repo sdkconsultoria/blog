@@ -217,4 +217,38 @@ class BlogPost extends ResourceModel
 
        return $categories;
    }
+
+   /**
+    * Scope a query to popular blogs
+    *
+    * @param  \Illuminate\Database\Eloquent\Builder  $query
+    * @return \Illuminate\Database\Eloquent\Builder
+    */
+   public function scopePopular($query, $limit = 5)
+   {
+       return $query->where('status', self::STATUS_ACTIVE)->limit($limit);
+   }
+
+   /**
+    * Scope a query to latest posts
+    *
+    * @param  \Illuminate\Database\Eloquent\Builder  $query
+    * @return \Illuminate\Database\Eloquent\Builder
+    */
+   public function scopeRecent($query, $limit = 5)
+   {
+       return $query->where('status', self::STATUS_ACTIVE)->orderBy('created_at', 'DESC')->limit($limit);
+   }
+
+   /**
+    * Scope a query to related
+    *
+    * @param  \Illuminate\Database\Eloquent\Builder  $query
+    * @return \Illuminate\Database\Eloquent\Builder
+    */
+   public function relatedPosts()
+   {
+       return $query->where('status', self::STATUS_ACTIVE)->whereNull('parent_id')->limit($limit);
+   }
+
 }
