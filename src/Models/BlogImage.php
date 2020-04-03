@@ -43,4 +43,9 @@ class BlogImage extends Model
             $options
         );
     }
+
+    public function getUrl($size = 'medium')
+    {
+        return aseet('storage/blogs/'.$this->blog_post_id.'/'.$this->id.'-'.$size.'.jpg');
+    }
 }
