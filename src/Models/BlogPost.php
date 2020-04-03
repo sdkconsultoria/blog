@@ -18,6 +18,7 @@ class BlogPost extends ResourceModel
        return [
            'name'             => 'required|min:3',
            'description'      => 'required',
+           'short_description' => 'required',
            'blog_id'          => 'required',
            'language'         => 'required',
            'title'            => 'required',
@@ -49,6 +50,7 @@ class BlogPost extends ResourceModel
            'name'             => __('base::attributes.name'),
            'seoname'          => __('base::attributes.seoname'),
            'description'      => __('base::attributes.description'),
+           'short_description' => __('base::attributes.short_description'),
            'blog_post_id'    => __('blog::blog.blog_post_id'),
            'blog_id'         => __('blog::blog.blog_id'),
            'language'         => __('base::messages.language'),

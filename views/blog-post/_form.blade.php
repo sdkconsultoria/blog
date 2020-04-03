@@ -31,6 +31,11 @@ use Sdkconsultoria\Blog\Models\Blog;
         <?= ActiveField::Input($model, 'description')->textArea(['class' => 'summernote'])?>
     </div>
 </div>
+<div class="form-group row">
+    <div class="col-md-12">
+        <?= ActiveField::Input($model, 'short_description')->textArea()?>
+    </div>
+</div>
 
 <div class="form-group">
     <div class="row">
