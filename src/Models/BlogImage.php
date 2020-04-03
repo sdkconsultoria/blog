@@ -46,6 +46,6 @@ class BlogImage extends Model
 
     public function getUrl($size = 'medium')
     {
-        return aseet('storage/blogs/'.$this->blog_post_id.'/'.$this->id.'-'.$size.'.jpg');
+        return asset('storage/blogs/'.$this->blog_post_id.'/'.$this->id.'-'.$size.'.jpg');
     }
 }
