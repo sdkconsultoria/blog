@@ -198,7 +198,7 @@ class BlogPost extends ResourceModel
        return array_reverse($this->getParentCategory(false, true));
    }
 
-   public function getParentCategory($post = false)
+   public function getParentCategory($post = false, $current = false)
    {
        if (!$post) {
            $post = $this;
@@ -249,6 +249,17 @@ class BlogPost extends ResourceModel
    public function relatedPosts()
    {
        return $query->where('status', self::STATUS_ACTIVE)->whereNull('parent_id')->limit($limit);
+   }
+
+   public function getUrl()
+   {
+       $params = [];
+       $categories = $this->blog->getParentCategories(true);
+       foreach ($categories as $key => $category) {
+           $params[] = $category->seoname;
+       }
+       $params[] = $this->seoname;
+       return route('full-post', $params);
    }
 
 }
