@@ -4,6 +4,13 @@ use Sdkconsultoria\Blog\Models\Blog;
 @endphp
 
 <div class="form-group row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2">
+                <?= ActiveField::Input($model, 'published_at')->dateInput()?>
+            </div>
+        </div>
+    </div>
     <div class="col-md-6">
         <?= ActiveField::Input($model, 'blog_id')
         ->select(Blog::getSelect(), [

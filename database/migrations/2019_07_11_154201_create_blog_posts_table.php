@@ -42,6 +42,7 @@ class CreateBlogPostsTable extends Migration
             $table->text('images_types')->nullable();
             $table->text('sizes')->nullable();
             $table->text('keys')->nullable();
+            $table->date('published_at')->nullable();
         });
 
         $blog = new BlogPost();

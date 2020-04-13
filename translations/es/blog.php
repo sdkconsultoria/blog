@@ -14,6 +14,7 @@ return [
     'sizes'           => 'Tamaños',
     'images_types'    => 'Tipos',
     'parent_id'       => 'Categoría padre',
+    'published_at'    => 'Fecha de publicación',
 
     /**
      * Blogs posts translates

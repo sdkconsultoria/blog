@@ -18,7 +18,7 @@ class BlogPost extends ResourceModel
        return [
            'name'             => 'required|min:3',
            'description'      => 'required',
-           'short_description' => 'required',
+           // 'short_description' => 'required',
            'blog_id'          => 'required',
            'language'         => 'required',
            'title'            => 'required',
