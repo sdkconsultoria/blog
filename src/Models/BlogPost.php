@@ -72,7 +72,9 @@ class BlogPost extends ResourceModel
    {
        $attributes = parent::getFiltersAttribute();
        return array_merge([
-           'name',
+           'name' => [
+               'column' => ['name', 'seoname'],
+           ],
            'blog_id' => [
                'join' => 'blogs',
                'column' => 'name'
