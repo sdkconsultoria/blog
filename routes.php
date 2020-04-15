@@ -1,10 +1,10 @@
 <?php
 
 Route::prefix('admin')
-->middleware(['web', 'role:super-admin'])
+->middleware(['web', 'auth', 'role:super-admin'])
 ->namespace('\Sdkconsultoria\Blog\Controllers')
 ->group(function () {
-    Route::resource('blog', 'BlogController')->middleware('auth');
+    Route::resource('blog', 'BlogController');
     Route::resource('blog-post', 'BlogPostController');
 
     Route::get('blog-post/create/{blog}', 'BlogPostController@create')->name('blog-post.create-blog');
