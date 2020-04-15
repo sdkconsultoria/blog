@@ -4,6 +4,7 @@ namespace Sdkconsultoria\Blog\Middleware;
 
 use Closure;
 use Sdkconsultoria\Blog\Models\Blog;
+use Cache;
 
 class LoadMenu
 {
@@ -16,13 +17,18 @@ class LoadMenu
      */
     public function handle($request, Closure $next)
     {
-        $menu = Blog::parents()->get();
-        $menu_categories = [];
-        foreach ($menu as $key => $item) {
-            $menu_categories[] = $this->generateMenu($item);
+        if (!Cache::has('menu'))
+        {
+            $menu = Blog::parents()->get();
+            $menu_categories = [];
+            foreach ($menu as $key => $item) {
+                $menu_categories[] = $this->generateMenu($item);
+            }
+
+            Cache::forever('menu', $menu_categories);
         }
 
-        view()->share('menu_categories', $menu_categories);
+        view()->share('menu_categories', Cache::get('menu'));
         return $next($request);
     }
 
