@@ -2,6 +2,7 @@
 namespace Sdkconsultoria\Blog\Traits;
 
 use Sdkconsultoria\Blog\Models\{BlogPost, Blog};
+use Illuminate\Http\Request;
 
 /**
  *
@@ -37,6 +38,22 @@ trait BlogControllerTrait
         $blog_posts = BlogPost::where('blog_id', $blog->id)->where('status', BlogPost::STATUS_ACTIVE)->get();
 
         return $blog_posts;
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->input('q');
+
+        $posts = BlogPost::where(function($query) use ($q){
+          $query->where('name', 'like', '%'.$q.'%')
+            ->orWhere('description', 'like', '%'.$q.'%');
+        })->where('status', BlogPost::STATUS_ACTIVE)->simplePaginate(15);
+
+        return view('front.home.search',[
+            // 'posts' => $posts->appends(Input::except('page')),
+            'posts' => $posts->appends(request()->query()),
+            'q' => $q,
+        ]);
     }
 
 }
