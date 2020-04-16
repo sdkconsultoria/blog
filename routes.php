@@ -30,6 +30,8 @@ Route::prefix('admin')
 
     Route::post('blog-post/images/save-sizes', 'BlogPostController@saveImageSizes')->name('blog-post.image.save-size');
 
+    Route::get('/search', 'BlogController@search')->name('search-post');
+
 });
 //
 // Route::namespace('\App\Http\Controllers\Front')
