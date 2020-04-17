@@ -17,6 +17,8 @@ class LoadMenu
      */
     public function handle($request, Closure $next)
     {
+        // Cache::forget('menu');
+
         if (!Cache::has('menu'))
         {
             $menu = Blog::parents()->get();
@@ -42,10 +44,13 @@ class LoadMenu
         $submenu['items'] = [];
 
         foreach ($item->childs as $key => $sub_item) {
-            $submenu['items'][] = $this->generateMenu($sub_item);
+            $child_menu = $this->generateMenu($sub_item);
+            if ($child_menu['items']) {
+                $submenu['items'][] = $child_menu;
+            }
         }
 
-        $submenu['items'] = array_merge($submenu['items'], $this->generatePosts($item->posts));
+        $submenu['items'] = array_merge($submenu['items'], $this->generatePosts($item->posts()->limit(15)->get()));
 
         return $submenu;
     }
@@ -57,7 +62,7 @@ class LoadMenu
         foreach ($blogs as $key => $blog) {
             $menu_blogs[] = [
                 'name' => $blog->name,
-                'url'  => ['post', $blog->seoname]
+                'url'  => $blog->getUrl()
             ];
         }
 

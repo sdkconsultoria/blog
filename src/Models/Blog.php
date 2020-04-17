@@ -98,6 +98,22 @@ class Blog extends ResourceModel
         return $this->hasMany('Sdkconsultoria\Blog\Models\Blog', 'parent_id', 'id')->where('status', self::STATUS_ACTIVE);
     }
 
+    public function childsForce(){
+        $posts = $this->posts();
+
+        if (!$posts->count()) {
+            $childs = $this->childs;
+            foreach ($childs as $child) {
+                $child_posts = $child->childsForce();
+                if ($child_posts) {
+                    return $child_posts;
+                }
+            }
+        }
+
+        return $posts;
+    }
+
     public function parent()
     {
         return $this->belongsTo('Sdkconsultoria\Blog\Models\Blog', 'parent_id', 'id');
