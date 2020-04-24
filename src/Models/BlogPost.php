@@ -247,7 +247,7 @@ class BlogPost extends ResourceModel
     */
    public function scopePopular($query, $limit = 5)
    {
-       return $query->where('status', self::STATUS_ACTIVE)->where('popular', 1)->limit($limit);
+       return $query->where('status', self::STATUS_ACTIVE)->where('is_popular', 1)->limit($limit);
    }
 
    /**
@@ -258,7 +258,7 @@ class BlogPost extends ResourceModel
     */
    public function scopeFeatured($query, $limit = 5)
    {
-       return $query->where('status', self::STATUS_ACTIVE)->where('featured', 1)->limit($limit);
+       return $query->where('status', self::STATUS_ACTIVE)->where('is_featured', 1)->limit($limit);
    }
 
    /**
