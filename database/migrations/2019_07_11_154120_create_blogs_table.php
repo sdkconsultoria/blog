@@ -34,8 +34,8 @@ class CreateBlogsTable extends Migration
             $table->text('images_types')->nullable();
             $table->text('sizes')->nullable();
             $table->text('keys')->nullable();
-            $table->boolean('is_popular');
-            $table->boolean('is_featured');
+            $table->boolean('is_popular')->default(0);
+            $table->boolean('is_featured')->default(0);
         });
 
         $blog              = new Blog();
