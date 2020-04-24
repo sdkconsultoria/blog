@@ -9,6 +9,12 @@ use Sdkconsultoria\Blog\Models\Blog;
             <div class="col-md-2">
                 <?= ActiveField::Input($model, 'published_at')->dateInput()?>
             </div>
+            <div class="col-md-2">
+                <?= ActiveField::Input($model, 'is_popular')->checkBox()?>
+            </div>
+            <div class="col-md-2">
+                <?= ActiveField::Input($model, 'is_featured')->checkBox()?>
+            </div>
         </div>
     </div>
     <div class="col-md-6">

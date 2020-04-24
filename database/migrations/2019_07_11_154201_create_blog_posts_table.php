@@ -43,6 +43,10 @@ class CreateBlogPostsTable extends Migration
             $table->text('sizes')->nullable();
             $table->text('keys')->nullable();
             $table->date('published_at')->nullable();
+            $table->bigInteger('visits')->default(1);
+            $table->integer('stars')->default(0);
+            $table->boolean('is_popular')->default(0);
+            $table->boolean('is_featured')->default(0);
         });
 
         $blog = new BlogPost();

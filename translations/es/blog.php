@@ -15,6 +15,12 @@ return [
     'images_types'    => 'Tipos',
     'parent_id'       => 'Categoría padre',
     'published_at'    => 'Fecha de publicación',
+    'visits'          => 'Visitas',
+    'stars'           => 'Estrellas',
+    'is_popular'      => 'Popular',
+    'no_popular'      => 'No popular',
+    'is_featured'     => 'Destacado',
+    'no_featured'     => 'Sin destacar',
 
     /**
      * Blogs posts translates

@@ -61,6 +61,10 @@ class BlogPost extends ResourceModel
            'meta_keywords'    => __('blog::blog.meta_keywords'),
            'images'           => __('base::attributes.images.items'),
            'published_at'     => __('blog::blog.published_at'),
+           'visits'           => __('blog::blog.visits'),
+           'stars'            => __('blog::blog.stars'),
+           'is_popular'       => __('blog::blog.is_popular'),
+           'is_featured'      => __('blog::blog.is_featured'),
        ]);
    }
 
@@ -79,7 +83,21 @@ class BlogPost extends ResourceModel
            'blog_id' => [
                'join' => 'blogs',
                'column' => 'name'
-           ]
+           ],
+           'is_popular' => [
+               'type'   => 'dropdown',
+               'options' => [
+                   '0' => __('blog::blog.no_popular'),
+                   '1' => __('blog::blog.is_popular'),
+               ]
+           ],
+           'is_featured' => [
+               'type'   => 'dropdown',
+               'options' => [
+                   '0' => __('blog::blog.no_featured'),
+                   '1' => __('blog::blog.is_featured'),
+               ]
+           ],
        ], $attributes);
    }
 
