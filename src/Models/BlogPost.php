@@ -247,7 +247,18 @@ class BlogPost extends ResourceModel
     */
    public function scopePopular($query, $limit = 5)
    {
-       return $query->where('status', self::STATUS_ACTIVE)->limit($limit);
+       return $query->where('status', self::STATUS_ACTIVE)->where('popular', 1)->limit($limit);
+   }
+
+   /**
+    * Scope a query to featured blogs
+    *
+    * @param  \Illuminate\Database\Eloquent\Builder  $query
+    * @return \Illuminate\Database\Eloquent\Builder
+    */
+   public function scopeFeatured($query, $limit = 5)
+   {
+       return $query->where('status', self::STATUS_ACTIVE)->where('featured', 1)->limit($limit);
    }
 
    /**
