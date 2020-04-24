@@ -200,8 +200,8 @@ class BlogPost extends ResourceModel
            $key->value = $value;
        }else{
            $key                = new BlogKey();
-           $key->blog_post_id = $this->id;
-           $key->created_by    = auth()->user()->id;
+           $key->blog_post_id  = $this->id;
+           $key->created_by    = auth()->user()?auth()->user()->id:1;
            $key->name          = $label;
            $key->value         = $value;
        }
