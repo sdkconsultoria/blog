@@ -26,5 +26,15 @@
                 }
             ],
             ])?>
+
+            <h2>@lang('blog::blog.extra_keys')</h2>
+            <table class="table">
+                @foreach ($model->getKeys as $key => $value)
+                    <tr>
+                        <th>{{$value->name}}</th>
+                        <td>{{$value->value}}</td>
+                    </tr>
+                @endforeach
+            </table>
     @endcard()
 @endsection

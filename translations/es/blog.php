@@ -21,6 +21,7 @@ return [
     'no_popular'      => 'No popular',
     'is_featured'     => 'Destacado',
     'no_featured'     => 'Sin destacar',
+    'extra_keys'      => 'Campos extra',
 
     /**
      * Blogs posts translates
