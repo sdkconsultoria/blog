@@ -28,6 +28,8 @@ return [
      */
     'blog_posts'          => 'Blog posts',
     'blog_post'           => 'Blog post',
+    'blog_category'       => 'Categoría',
+    'blog_categories'     => 'Categorias',
     'create_blog_post'    => 'Crear blog post',
     'available_blog_post' => 'Disponibles blog posts',
     'detail_blog_post'    => 'Detalles',

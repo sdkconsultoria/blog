@@ -46,7 +46,7 @@ class Menu
                 'visible' => auth()->user()->hasRole('admin'),
                 'items' => [
                     [
-                        'name' => __('blog::blog.blogs'),
+                        'name' => __('blog::blog.blog_categories'),
                         'icon' => 'book',
                         'url'  => 'blog.index',
                         'crud' => 'blog',
