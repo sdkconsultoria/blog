@@ -8,14 +8,16 @@ Route::prefix('admin')
     Route::resource('blog-post', 'BlogPostController');
 
     Route::get('blog-post/create/{blog}', 'BlogPostController@create')->name('blog-post.create-blog');
+
     // Route::get('page/{page}', 'BlogPostController@page')->name('blog-post.page');
     // Route::put('page/{page}', 'BlogPostController@page')->name('blog-post.page');
-
     Route::match(['get', 'put'], 'page/{page}', 'BlogPostController@page')->name('blog-post.page');
 
-    Route::get('pages/{page}', 'BlogController@pages')->name('blog-post.pages');
+    // Route::get('pages/{page}', 'BlogController@pages')->name('blog-post.pages');
+    // Route::post('pages/{page}', 'BlogController@pages')->name('blog-post.pages');
+    Route::match(['get', 'post'], 'pages/{page}', 'BlogController@pages')->name('blog-post.pages');
+
     Route::get('pages/blog/{blog}', 'BlogPostController@blogs')->name('blog-post.blogs');
-    Route::post('pages/{page}', 'BlogController@pages')->name('blog-post.pages');
     Route::delete('page/{page}', 'BlogController@deletePages')->name('blog-post.pages.destroy');
 
     Route::post('blog/addKey/{id}', 'BlogController@addKey')->name('blog.addkey');
