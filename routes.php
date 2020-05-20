@@ -8,8 +8,10 @@ Route::prefix('admin')
     Route::resource('blog-post', 'BlogPostController');
 
     Route::get('blog-post/create/{blog}', 'BlogPostController@create')->name('blog-post.create-blog');
-    Route::get('page/{page}', 'BlogPostController@page')->name('blog-post.page');
-    Route::put('page/{page}', 'BlogPostController@page')->name('blog-post.page');
+    // Route::get('page/{page}', 'BlogPostController@page')->name('blog-post.page');
+    // Route::put('page/{page}', 'BlogPostController@page')->name('blog-post.page');
+
+    Route::match(['get', 'put'], 'page/{page}', 'BlogPostController@page')->name('blog-post.page');
 
     Route::get('pages/{page}', 'BlogController@pages')->name('blog-post.pages');
     Route::get('pages/blog/{blog}', 'BlogPostController@blogs')->name('blog-post.blogs');
