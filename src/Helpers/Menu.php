@@ -2,6 +2,7 @@
 namespace Sdkconsultoria\Blog\Helpers;
 
 use App\Helpers\Pages;
+use App\Helpers\Sections;
 /**
  *
  */
@@ -10,6 +11,12 @@ class Menu
     public static function generate()
     {
         return [
+            [
+                'name' => __('base::attributes.section.items'),
+                'icon' => 'list-alt',
+                'url'  => 'images.index',
+                'items' => Sections::generate()
+            ],
             [
                 'name' => __('base::app.pages'),
                 'icon' => 'file-text',
