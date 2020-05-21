@@ -27,7 +27,7 @@ use Sdkconsultoria\Blog\Models\Blog;
             ])?>
     </div>
     <div class="col-md-6">
-        <?= ActiveField::Input($model, 'language')->select(config('base.languages'))?>
+        <?= ActiveField::Input($model, 'language')->select(array_keys(config('base.languages')))?>
     </div>
 </div>
 <div class="form-group row">

@@ -28,9 +28,9 @@ use Sdkconsultoria\Blog\Models\Blog;
                     'id' => 'blog_id',
                     'data-url' => route('blog-post.create-blog', 'default')
                     ])?>            </div>
-            <div class="col-md-6">
-                <?= ActiveField::Input($model, 'language')->select(config('base.languages'))?>
-            </div>
+        <div class="col-md-6">
+            <?= ActiveField::Input($model, 'language')->select(array_keys(config('base.languages')))?>
+        </div>
         </div>
         <div class="form-group row">
             <div class="col-md-6">
