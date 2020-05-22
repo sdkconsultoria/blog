@@ -9,8 +9,8 @@ class BlogKey extends ResourceModel
 
     public function save(array $options = [])
     {
-        $this->generateSeoname();
-        $this->generateSeoname('value', 'seovalue');
+        $this->generateSeoname('name', 'seoname', false);
+        $this->generateSeoname('value', 'seovalue', false);
         parent::save($options);
     }
 }

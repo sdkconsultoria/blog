@@ -22,15 +22,34 @@ use Sdkconsultoria\Blog\Models\Blog;
     <form enctype="multipart/form-data" action="{{route('blog-post.store')}}" method="post">
         @csrf
         <div class="form-group row">
+            <div class="col-md-4">
+                <?= ActiveField::Input($model, 'identifier')?>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <?= ActiveField::Input($model, 'published_at')->dateInput()?>
+                </div>
+                <div class="col-md-2">
+                    <?= ActiveField::Input($model, 'is_popular')->checkBox()?>
+                </div>
+                <div class="col-md-2">
+                    <?= ActiveField::Input($model, 'is_featured')->checkBox()?>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
             <div class="col-md-6">
                 <?= ActiveField::Input($model, 'blog_id')
                 ->select(Blog::getSelect(), [
                     'id' => 'blog_id',
                     'data-url' => route('blog-post.create-blog', 'default')
-                    ])?>            </div>
-        <div class="col-md-6">
-            <?= ActiveField::Input($model, 'language')->select(array_keys(config('base.languages')))?>
-        </div>
+                    ])?>
+            </div>
+            <div class="col-md-6">
+                <?= ActiveField::Input($model, 'language')->select(array_keys(config('base.languages')))?>
+            </div>
         </div>
         <div class="form-group row">
             <div class="col-md-6">

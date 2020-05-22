@@ -108,7 +108,7 @@ class BlogPostController extends ResourceController
         $model->save();
 
         foreach ($model->blog->getKeys() as $key => $value) {
-            $model->addKey($value, $request->input($value['name']));
+            $model->addKey($value, $request->input($model->getTable().'_bkeys_'.$value['name']));
         }
 
         $this->saveImages($model, $request);

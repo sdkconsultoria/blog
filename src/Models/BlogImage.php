@@ -46,6 +46,9 @@ class BlogImage extends Model
 
     public function getUrl($size = 'medium')
     {
-        return asset('storage/blogs/'.$this->blog_post_id.'/'.$this->id.'-'.$size.'.jpg');
+        if ($size == 'original') {
+            return asset('storage/blogs/'.$this->blog_post_id.'/'.$this->id.'.'. $this->extension);
+        }
+        return asset('storage/blogs/'.$this->blog_post_id.'/'.$this->id.'-'.$size.'.jpg', null, true);
     }
 }

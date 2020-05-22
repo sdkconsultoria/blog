@@ -4,8 +4,12 @@ use Sdkconsultoria\Base\Helpers\SizeComponent;
 use Sdkconsultoria\Blog\Models\Blog;
 @endphp
 
+<?= ActiveField::Input($model, 'identifier')?>
 <?= ActiveField::Input($model, 'name')?>
+<?= ActiveField::Input($model, 'title')?>
+<?= ActiveField::Input($model, 'subtitle')?>
 <?= ActiveField::Input($model, 'description')->textArea()?>
+<?= ActiveField::Input($model, 'short_description')?>
 <?= ActiveField::Input($model, 'parent_id')->select(Blog::getSelect())?>
 
 <h2>@lang('blog::blog.keys')</h2>

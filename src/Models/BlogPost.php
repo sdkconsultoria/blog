@@ -294,4 +294,9 @@ class BlogPost extends ResourceModel
        return route('full-post', $params);
    }
 
+   public function getKeysIndex($index = 'name')
+   {
+       return $this->getKeys()->get()->keyBy($index)->toArray();
+   }
+
 }

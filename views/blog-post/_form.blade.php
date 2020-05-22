@@ -4,9 +4,15 @@ use Sdkconsultoria\Blog\Models\Blog;
 @endphp
 
 <div class="form-group row">
+    <div class="col-md-4">
+        <?= ActiveField::Input($model, 'identifier')?>
+    </div>
+</div>
+
+<div class="form-group row">
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <?= ActiveField::Input($model, 'published_at')->dateInput()?>
             </div>
             <div class="col-md-2">
