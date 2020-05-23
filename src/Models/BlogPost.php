@@ -4,6 +4,7 @@ namespace Sdkconsultoria\Blog\Models;
 
 use Sdkconsultoria\Base\Models\ResourceModel;
 use Sdkconsultoria\Blog\Models\BlogKey;
+use Sdkconsultoria\Blog\Models\BlogImage;
 
 class BlogPost extends ResourceModel
 {
@@ -134,7 +135,12 @@ class BlogPost extends ResourceModel
        }
 
        if ($limit) {
-           return $response->first();
+           $response = $response->first();
+           if ($response) {
+               return $response;
+           }
+
+           return new BlogImage();
        }
 
        return $response->get();
