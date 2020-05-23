@@ -33,6 +33,9 @@ use Sdkconsultoria\Base\Widgets\Form\ActiveField;
             <div class="col-md-12">
                 <?= ActiveField::Input($model, 'description')->textArea(['class' => 'summernote'])?>
             </div>
+            <div class="col-md-12">
+                <?= ActiveField::Input($model, 'short_description')?>
+            </div>
         </div>
 
          <button style="display:none" id="edit" type="button"></button>
