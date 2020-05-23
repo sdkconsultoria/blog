@@ -52,11 +52,14 @@ use Sdkconsultoria\Blog\Models\Blog;
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <?= ActiveField::Input($model, 'name')?>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <?= ActiveField::Input($model, 'title')?>
+            </div>
+            <div class="col-md-4">
+                <?= ActiveField::Input($model, 'subtitle')?>
             </div>
         </div>
 
