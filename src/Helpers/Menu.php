@@ -15,11 +15,13 @@ class Menu
                 'name' => __('base::attributes.section.items'),
                 'icon' => 'list-alt',
                 'url'  => 'images.index',
+                'visible' => auth()->user()->hasRole('admin'),
                 'items' => Sections::generate()
             ],
             [
                 'name' => __('base::app.pages'),
                 'icon' => 'file-text',
+                'visible' => auth()->user()->hasRole('admin'),
                 'items' => Pages::generate()
             ],
             [
