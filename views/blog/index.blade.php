@@ -30,7 +30,13 @@ use Sdkconsultoria\Base\Widgets\Messages\Alert;
                 'params' => [
                     'title' => ''
                 ],
-                ':route' => ['name' => 'blog-post.blogs', 'blog' => function($model){return $model->seoname;}],
+                ':route' => [
+                    'name' => 'blog-post.blogs',
+                    'params' => [
+                        'blog' => 'seoname'
+                    ]
+                ],
+                    // 'blog' => function($model){return $model->seoname;}],
                 'template' => '<a href=":route" class="btn btn-info"> <i class="la la-magic" aria-hidden="true"></i></a>'
                 ]
             ],
