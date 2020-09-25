@@ -3,50 +3,51 @@ use Sdkconsultoria\Base\Widgets\Form\ActiveField;
 use Sdkconsultoria\Blog\Models\Blog;
 @endphp
 
-<div class="form-group row">
+@if (!isset($page))
+  <div class="form-group row">
     <div class="col-md-4">
-        <?= ActiveField::Input($model, 'identifier')?>
+      <?= ActiveField::Input($model, 'identifier')?>
     </div>
-</div>
-
-<div class="form-group row">
+  </div>
+  <div class="form-group row">
     <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-4">
-                <?= ActiveField::Input($model, 'published_at')->dateInput()?>
-            </div>
-            <div class="col-md-2">
-                <?= ActiveField::Input($model, 'is_popular')->checkBox()?>
-            </div>
-            <div class="col-md-2">
-                <?= ActiveField::Input($model, 'is_featured')->checkBox()?>
-            </div>
+      <div class="row">
+        <div class="col-md-4">
+          <?= ActiveField::Input($model, 'published_at')->dateInput()?>
         </div>
+        <div class="col-md-2">
+          <?= ActiveField::Input($model, 'is_popular')->checkBox()?>
+        </div>
+        <div class="col-md-2">
+          <?= ActiveField::Input($model, 'is_featured')->checkBox()?>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
-        <?= ActiveField::Input($model, 'blog_id')
-        ->select(Blog::getSelect(), [
-            'disabled' => 'true',
-            'id' => 'blog_id',
-            'readOnly' => true,
-            'data-url' => route('blog-post.create-blog', 'default')
-            ])?>
-    </div>
-    <div class="col-md-6">
+      <?= ActiveField::Input($model, 'blog_id')
+      ->select(Blog::getSelect(), [
+        'disabled' => 'true',
+        'id' => 'blog_id',
+        'readOnly' => true,
+        'data-url' => route('blog-post.create-blog', 'default')
+        ])?>
+      </div>
+      <div class="col-md-6">
         <?= ActiveField::Input($model, 'language')->select(array_keys(config('base.languages')))?>
+      </div>
     </div>
-</div>
-<div class="form-group row">
-    <div class="col-md-4">
+    <div class="form-group row">
+      <div class="col-md-4">
         <?= ActiveField::Input($model, 'name')?>
-    </div>
-    <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
         <?= ActiveField::Input($model, 'title')?>
-    </div>
-    <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
         <?= ActiveField::Input($model, 'subtitle')?>
+      </div>
     </div>
-</div>
+@endif
 
 <div class="form-group row">
     <div class="col-md-12">
@@ -120,13 +121,14 @@ use Sdkconsultoria\Blog\Models\Blog;
     <button type="submit" class="btn btn-primary">@lang('base::messages.save')</button>
 </div>
 
-{{-- @section('custom_scripts')
+@section('custom_scripts')
     <script type="text/javascript">
     (function(window, document, $) {
         'use strict';
+        // Basic Summernote
         $('.summernote').summernote({
             height: 250,   //set editable area's height
         });
     })(window, document, jQuery);
     </script>
-@endsection --}}
+@endsection
