@@ -105,7 +105,7 @@ use Sdkconsultoria\Base\Widgets\Form\ActiveField;
     </form>
     @endcard()
 @endsection
-@section('custom_scripts')
+{{-- @section('custom_scripts')
     <script type="text/javascript">
     (function(window, document, $) {
         'use strict';
@@ -115,4 +115,4 @@ use Sdkconsultoria\Base\Widgets\Form\ActiveField;
         });
     })(window, document, jQuery);
     </script>
-@endsection
+@endsection --}}

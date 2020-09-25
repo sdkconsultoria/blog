@@ -142,6 +142,7 @@ class BlogController extends ResourceController
             $model->created_by   = auth()->user()->id;
             $model->images_types = serialize(config('base.images_types'));
             $model->sizes        = serialize(config('base.images'));
+            $model->status       = 0;
             $model->save();
         }
 

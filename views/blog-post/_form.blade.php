@@ -120,7 +120,7 @@ use Sdkconsultoria\Blog\Models\Blog;
     <button type="submit" class="btn btn-primary">@lang('base::messages.save')</button>
 </div>
 
-@section('custom_scripts')
+{{-- @section('custom_scripts')
     <script type="text/javascript">
     (function(window, document, $) {
         'use strict';
@@ -129,4 +129,4 @@ use Sdkconsultoria\Blog\Models\Blog;
         });
     })(window, document, jQuery);
     </script>
-@endsection
+@endsection --}}
