@@ -192,7 +192,7 @@ class BlogPost extends ResourceModel
 
        $model = new BlogKey();
        $model->blog_post_id = $this->id;
-       $model->created_by = auth()->user()->id;
+       $model->created_by = auth()->user()->id??'1';
        $model->name = $key['name'];
        $model->value = $value;
        $model->save();
